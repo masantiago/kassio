@@ -1,0 +1,43 @@
+apiVersion: v1
+description: A Helm chart for kassio
+name: kassio
+version: 0.4.0
+keywords:
+  - home-assistant
+  - node-red
+home: https://github.com/masantiago/kassio
+icon:
+sources:
+  - https://github.com/masantiago/kassio
+maintainers:
+  - name: masantiago
+    email: miguelangel.santiago@hotmail.com
+dependencies:
+  - name: home-assistant
+    version: 3.4.0
+    repository: https://k8s-at-home.com/charts/
+    condition: home-assistant.enabled
+  - name: node-red
+    version: 4.3.0
+    repository: https://k8s-at-home.com/charts/
+    condition: node-red.enabled  
+  - name: vernemq
+    version: 1.6.5
+    repository: https://vernemq.github.io/docker-vernemq
+    condition: vernemq.enabled  
+  - name: zigbee2mqtt
+    version: 3.3.0
+    repository: https://k8s-at-home.com/charts/
+    condition: zigbee2mqtt.enabled
+  - name: zwave2mqtt
+    version: 5.4.0
+    repository: https://k8s-at-home.com/charts/
+    condition: zwave2mqtt.enabled
+  - name: heimdall
+    version: 2.0.1
+    repository: https://k8s-at-home.com/charts/
+    condition: heimdall.enabled
+  - name: frigate
+    version: 4.0.1
+    repository: https://k8s-at-home.com/charts/
+    condition: frigate.enabled

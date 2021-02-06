@@ -1,0 +1,194 @@
+password: &password <your_password> # Set master password for kassio
+
+heimdall:
+  enabled: true  
+  image:
+    repository: linuxserver/heimdall
+    tag: arm32v7-version-2.2.2
+  timezone: Europe/Madrid
+  persistence:
+    config:
+      enabled: true
+      size: 1Gi                
+      storageClass: local-path
+      accessMode: ReadWriteOnce
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: traefik
+
+home-assistant:
+  enabled: true
+  image:
+    repository: homeassistant/raspberrypi4-homeassistant
+    tag: 0.118.5
+  hostNetwork: true
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: traefik
+  persistence:
+    enabled: true
+    size: 5Gi
+    storageClass: local-path
+    accessMode: ReadWriteOnce
+      
+node-red:
+  enabled: true
+  image:
+    repository: nodered/node-red
+    tag: 1.2.6
+  env:
+    TZ: Europe/Madrid
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: traefik
+  persistence:
+    data:
+      enabled: true
+      size: 5Gi
+      storageClass: local-path
+      accessMode: ReadWriteOnce  
+
+vernemq:
+  enabled: true
+  image: 
+    repository: timbrand/vernemq-rpi
+    tag: 1.10.2  
+  persistentVolume:
+    enabled: true
+    size: 5Gi                
+    storageClass: local-path
+    accessMode: ReadWriteOnce  
+  service:
+    type: NodePort
+    mqtt:
+      nodePort: 32000
+  additionalEnv:
+    - name: DOCKER_VERNEMQ_USER_ADMIN
+      value: *password
+    - name: DOCKER_VERNEMQ_USER_HOME-ASSISTANT
+      value: *password
+    - name: DOCKER_VERNEMQ_USER_NODE-RED
+      value: *password
+    - name: DOCKER_VERNEMQ_USER_ZWAVE
+      value: *password
+    - name: DOCKER_VERNEMQ_USER_ZIGBEE
+      value: *password
+  acl: config/vernemq/vmq.acl
+  extraVolumeMounts:
+    - name: vernemq-acl
+      mountPath: /vernemq/etc/vmq.acl
+      subPath: vernemq-acl
+      readOnly: true  
+  extraVolumes:
+    - name: vernemq-acl
+      configMap:
+        name: kassio-vernemq-acl # Must be first extraVolume
+
+zigbee2mqtt:
+  enabled: false  
+  image: 
+    repository: koenkk/zigbee2mqtt
+    tag: 1.17.0
+  env:
+    TZ: Europe/Madrid    
+  config:
+    serial:
+      port: /dev/ttyACM0
+    homeassistant: true
+    mqtt:
+      base_topic: zigbee
+      server: "mqtt://kassio-vernemq"
+      user: zigbee
+      password: *password      
+    advanced:      
+      homeassistant_discovery_topic: "home-assistant"
+      homeassistant_status_topic: "home-assistant/status"
+      network_key: [4, 1, 10, 4, 2, 14, 3, 6, 8, 8, 13, 11, 2, 9, 7, 15]
+      channel: 11 # https://www.metageek.com/training/resources/zigbee-wifi-coexistence.html
+    frontend:
+      port: 8080
+    experimental:
+      new_api: true
+  service:
+    type: NodePort
+    port:
+      nodePort: 32001    
+  persistence:
+    data:
+      enabled: true
+      size: 2Gi                
+      storageClass: local-path
+      accessMode: ReadWriteOnce
+  # Path to your zigbee device in the container
+  additionalVolumeMounts:
+    - name: usb
+      mountPath: /dev/ttyACM0
+  # Path to your zigbee device on the host
+  additionalVolumes:
+    - name: usb
+      hostPath:
+        path: /dev/ttyACM0
+  nodeSelector:
+    kassio/zigbee: "true"
+
+zwave2mqtt:
+  enabled: false  
+  image:
+    repository: robertslando/zwave2mqtt
+    tag: 4.1.1
+  env:
+    TZ: Europe/Madrid  
+  service:
+    type: NodePort
+    port:
+      nodePort: 32002  
+  persistence:
+    config:
+      enabled: true
+      size: 2Gi                
+      storageClass: local-path
+      accessMode: ReadWriteOnce
+  # Path to your zigbee device in the container
+  additionalVolumeMounts:
+    - name: usb
+      mountPath: /dev/ttyACM0
+  # Path to your zigbee device on the host
+  additionalVolumes:
+    - name: usb
+      hostPath:
+        path: /dev/ttyACM0
+  nodeSelector:
+    kassio/zwave: "true"
+
+frigate:
+  enabled: false  
+  image:
+    repository: blakeblackshear/frigate
+    tag: 0.7.3-aarch64
+  timezone: Europe/Madrid
+  rtspPassword: *password
+  coral:
+    enabled: true
+    hostPath: /dev/bus/usb
+  shmSize: 1Gi # Memory/camera = (width * height * 3 + 270480)/1048576 = <shm size in mb>
+  config: |
+    mqtt:      
+      host: kassio-vernemq
+      topic_prefix: "home-assistant/frigate"
+      user: home-assistant
+      password: '{FRIGATE_RTSP_PASSWORD}'
+    ffmpeg:
+      hwaccel_args:
+        - -c:v
+        - h264_v4l2m2m
+    objects:
+      track:
+        - person
+  service:
+    type: NodePort
+    nodePort: 32003  
+  nodeSelector:
+    kassio/coral: "true"

@@ -1,0 +1,13 @@
+{{- if .Values.vernemq.enabled }}
+{{- $extraVolume := first .Values.vernemq.extraVolumes -}}
+{{- $configMap := $extraVolume.configMap.name -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:  
+  name: {{ $configMap }}
+  labels:
+{{ include "labels" . | indent 4}}    
+data:  
+  vernemq-acl: |-  
+{{ .Files.Get .Values.vernemq.acl | indent 4 }}
+{{- end }}
