@@ -167,7 +167,7 @@ frigate:
   enabled: false  
   image:
     repository: blakeblackshear/frigate
-    tag: 0.7.3-aarch64
+    tag: 0.8.1-aarch64
   timezone: Europe/Madrid
   rtspPassword: *password
   coral:
