@@ -197,6 +197,12 @@ prometheus:
   enabled: True
   grafana:
     adminPassword: *password
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+    env:
+      GF_SECURITY_ALLOW_EMBEDDING: true
   kubeEtcd:
     enabled: False
   prometheus:
