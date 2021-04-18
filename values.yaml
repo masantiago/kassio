@@ -95,10 +95,10 @@ zigbee2mqtt:
       port: 8080
     experimental:
       new_api: true
-  service:
-    type: NodePort
-    port:
-      nodePort: 32001    
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: traefik
   persistence:
     data:
       enabled: true
