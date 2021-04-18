@@ -1,22 +1,5 @@
 password: &password <your_password> # Set master password for kassio
 
-heimdall:
-  enabled: true  
-  image:
-    repository: linuxserver/heimdall
-    tag: arm32v7-version-2.2.2
-  timezone: Europe/Madrid
-  persistence:
-    config:
-      enabled: true
-      size: 1Gi                
-      storageClass: local-path
-      accessMode: ReadWriteOnce
-  ingress:
-    enabled: true
-    annotations:
-      kubernetes.io/ingress.class: traefik
-
 home-assistant:
   enabled: true
   image:
