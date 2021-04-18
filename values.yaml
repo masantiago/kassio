@@ -124,10 +124,10 @@ zwave2mqtt:
     tag: 4.1.1
   env:
     TZ: Europe/Madrid  
-  service:
-    type: NodePort
-    port:
-      nodePort: 32002  
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: traefik
   persistence:
     config:
       enabled: true
