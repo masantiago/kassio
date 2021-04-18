@@ -192,3 +192,22 @@ frigate:
     nodePort: 32003  
   nodeSelector:
     kassio/coral: "true"
+
+prometheus:
+  enabled: True
+  grafana:
+    adminPassword: *password
+  kubeEtcd:
+    enabled: False
+  prometheus:
+    prometheusSpec:
+      retention: 15d
+      retentionSize: 5GiB
+      storageSpec:
+        volumeClaimTemplate:
+          spec:
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 5Gi
+            storageClassName: local-path
