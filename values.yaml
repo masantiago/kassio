@@ -173,8 +173,8 @@ frigate:
   nodeSelector:
     kassio/coral: "true"
 
-prometheus:
-  enabled: True
+monitoring:
+  enabled: true
   grafana:
     adminPassword: *password
     ingress:
@@ -184,7 +184,7 @@ prometheus:
     env:
       GF_SECURITY_ALLOW_EMBEDDING: true
   kubeEtcd:
-    enabled: False
+    enabled: false
   prometheus:
     prometheusSpec:
       retention: 15d
@@ -197,3 +197,11 @@ prometheus:
               requests:
                 storage: 5Gi
             storageClassName: local-path
+
+logs:
+  enabled: true    
+  loki:
+    persistence:
+      enabled: true
+      storageClassName: local-path
+      size: 5Gi  
