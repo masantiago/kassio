@@ -197,6 +197,8 @@ monitoring:
               requests:
                 storage: 5Gi
             storageClassName: local-path
+  alertmanager:
+    enabled: false
 
 logs:
   enabled: true    
