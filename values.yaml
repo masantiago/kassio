@@ -170,9 +170,6 @@ frigate:
     objects:
       track:
         - person
-  service:
-    type: NodePort
-    nodePort: 32003  
   nodeSelector:
     kassio/coral: "true"
 
