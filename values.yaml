@@ -21,6 +21,8 @@ node-red:
   image:
     repository: nodered/node-red
     tag: 1.2.6
+  hostNetwork: true
+  dnsPolicy: ClusterFirstWithHostNet
   env:
     TZ: Europe/Madrid
   ingress:
