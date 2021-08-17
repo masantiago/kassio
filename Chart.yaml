@@ -47,3 +47,8 @@ dependencies:
     version: 2.3.1
     repository: https://grafana.github.io/helm-charts
     condition: logs.enabled
+  - name: network-ups-tools
+    alias: sai
+    version: 3.4.0
+    repository: https://k8s-at-home.com/charts/
+    condition: sai.enabled
