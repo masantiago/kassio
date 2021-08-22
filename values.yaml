@@ -20,21 +20,24 @@ node-red:
   enabled: true
   image:
     repository: nodered/node-red
-    tag: 1.2.6
-  hostNetwork: true
-  dnsPolicy: ClusterFirstWithHostNet
+    tag: 1.2.6  
   env:
     TZ: Europe/Madrid
+  hostNetwork: true
+  dnsPolicy: ClusterFirstWithHostNet
   ingress:
-    enabled: true
-    annotations:
-      kubernetes.io/ingress.class: traefik
+    main:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
   persistence:
     data:
       enabled: true
+      type: pvc      
       size: 5Gi
       storageClass: local-path
-      accessMode: ReadWriteOnce  
+      accessMode: ReadWriteOnce
+      mountPath: /data
 
 vernemq:
   enabled: true
@@ -78,7 +81,27 @@ zigbee2mqtt:
     repository: koenkk/zigbee2mqtt
     tag: 1.17.0
   env:
-    TZ: Europe/Madrid    
+    TZ: Europe/Madrid 
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+  securityContext:
+    privileged: true
+  persistence:
+    data:
+      enabled: true
+      type: pvc
+      size: 2Gi                
+      storageClass: local-path
+      accessMode: ReadWriteOnce
+      mountPath: /data
+    usb:
+      enabled: true
+      type: hostPath
+      hostPath: /dev/ttyACM0
+      mountPath: /dev/ttyACM0
   config:
     serial:
       port: /dev/ttyACM0
@@ -97,25 +120,6 @@ zigbee2mqtt:
       port: 8080
     experimental:
       new_api: true
-  ingress:
-    enabled: true
-    annotations:
-      kubernetes.io/ingress.class: traefik
-  persistence:
-    data:
-      enabled: true
-      size: 2Gi                
-      storageClass: local-path
-      accessMode: ReadWriteOnce
-  # Path to your zigbee device in the container
-  additionalVolumeMounts:
-    - name: usb
-      mountPath: /dev/ttyACM0
-  # Path to your zigbee device on the host
-  additionalVolumes:
-    - name: usb
-      hostPath:
-        path: /dev/ttyACM0
   nodeSelector:
     kassio/zigbee: "true"
 
@@ -217,6 +221,14 @@ sai:
     tag: v2.7.4-2474-gb4a58380
   env:
     TZ: Europe/Madrid
+  securityContext:
+    privileged: true
+  persistence:
+    usb:
+      enabled: true
+      type: hostPath
+      hostPath: /dev/usb
+      mountPath: /dev/usb  
   config:
     files:
       nut.conf: |
@@ -238,20 +250,35 @@ sai:
           instcmds = ALL
       upsmon.conf: |
         MINSUPPLIES 1
-  securityContext:
-    privileged: true
-  # Path to your SAI device in the container
-  additionalVolumeMounts:
-    - name: usb
-      mountPath: /dev/usb
-  # Path to your SAI device on the host
-  additionalVolumes:
-    - name: usb
-      hostPath:
-        path: /dev/usb
-  service:
-    port:
-      protocol: TCP
-      targetPort: server
   nodeSelector:
     kassio/sai: "true"
+
+dns:
+  enabled: true
+  image:
+    repository: adguard/adguardhome
+    tag: v0.106.3
+  env:
+    TZ: Europe/Madrid
+  hostNetwork: true
+  dnsPolicy: ClusterFirstWithHostNet  
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+  persistence:
+    config:
+      enabled: true
+      type: pvc
+      size: 100Mi
+      storageClass: local-path
+      accessMode: ReadWriteOnce
+      mountPath: /opt/adguardhome/conf
+    data:
+      enabled: true
+      type: pvc
+      size: 100Mi
+      storageClass: local-path
+      accessMode: ReadWriteOnce
+      mountPath: /opt/adguardhome/work
