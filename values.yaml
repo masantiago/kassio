@@ -282,3 +282,6 @@ dns:
       storageClass: local-path
       accessMode: ReadWriteOnce
       mountPath: /opt/adguardhome/work
+
+nfs:
+  enabled: false
