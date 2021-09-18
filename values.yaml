@@ -4,17 +4,24 @@ home-assistant:
   enabled: true
   image:
     repository: homeassistant/raspberrypi4-homeassistant
-    tag: 0.118.5
+    tag: 2021.9.6
+  env:
+    TZ: Europe/Madrid
   hostNetwork: true
+  dnsPolicy: ClusterFirstWithHostNet
   ingress:
-    enabled: true
-    annotations:
-      kubernetes.io/ingress.class: traefik
+    main:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
   persistence:
-    enabled: true
-    size: 5Gi
-    storageClass: local-path
-    accessMode: ReadWriteOnce
+    config:
+      enabled: true
+      type: pvc      
+      size: 5Gi
+      storageClass: local-path
+      accessMode: ReadWriteOnce
+      mountPath: /config
       
 node-red:
   enabled: true

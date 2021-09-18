@@ -14,7 +14,7 @@ maintainers:
     email: miguelangel.santiago@hotmail.com
 dependencies:
   - name: home-assistant
-    version: 3.4.0
+    version: 11.0.3
     repository: https://k8s-at-home.com/charts/
     condition: home-assistant.enabled
   - name: node-red
