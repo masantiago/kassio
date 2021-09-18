@@ -26,7 +26,7 @@ dependencies:
     repository: https://vernemq.github.io/docker-vernemq
     condition: vernemq.enabled  
   - name: zigbee2mqtt
-    version: 9.0.0
+    version: 9.0.1
     repository: https://k8s-at-home.com/charts/
     condition: zigbee2mqtt.enabled
   - name: zwave2mqtt
