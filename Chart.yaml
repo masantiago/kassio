@@ -34,8 +34,8 @@ dependencies:
     repository: https://k8s-at-home.com/charts/
     condition: zwave2mqtt.enabled
   - name: frigate
-    version: 5.0.1
-    repository: https://blakeblackshear.github.io/blakeshome-charts/
+    version: 6.1.1
+    repository: https://k8s-at-home.com/charts/
     condition: frigate.enabled
   - name: kube-prometheus-stack
     alias: monitoring

@@ -163,14 +163,34 @@ frigate:
   enabled: false  
   image:
     repository: blakeblackshear/frigate
-    tag: 0.8.1-aarch64
-  timezone: Europe/Madrid
-  rtspPassword: *password
-  coral:
-    enabled: true
-    hostPath: /dev/bus/usb
-  shmSize: 1Gi # Memory/camera = (width * height * 3 + 270480)/1048576 = <shm size in mb>
+    tag: 0.9.0-rc4-aarch64
+  env:
+    TZ: Europe/Madrid 
+    FRIGATE_RTSP_PASSWORD: *password
+  service:
+    main:
+      ports:
+        rtmp:
+          enabled: true
+  securityContext:
+    privileged: true
+  persistence:
+    usb:
+      enabled: true
+      type: hostPath
+      hostPath: /dev/bus/usb
+      mountPath: /dev/bus/usb
+    cache:
+      enabled: true
+      type: emptyDir
+      medium: Memory
+      sizeLimit: 1Gi # Memory/camera = (width * height * 3 + 270480)/1048576 = <shm size in mb>
+      mountPath: /dev/shm  
   config: |
+    detectors:
+      coral:
+        type: edgetpu
+        device: usb
     mqtt:      
       host: kassio-vernemq
       topic_prefix: "home-assistant/frigate"
