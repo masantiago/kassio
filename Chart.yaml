@@ -44,7 +44,7 @@ dependencies:
     condition: monitoring.enabled
   - name: loki-stack
     alias: logs
-    version: 2.3.1
+    version: 2.4.1
     repository: https://grafana.github.io/helm-charts
     condition: logs.enabled
   - name: network-ups-tools
