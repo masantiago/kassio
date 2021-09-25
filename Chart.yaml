@@ -18,7 +18,7 @@ dependencies:
     repository: https://k8s-at-home.com/charts/
     condition: home-assistant.enabled
   - name: node-red
-    version: 9.0.0
+    version: 9.0.1
     repository: https://k8s-at-home.com/charts/
     condition: node-red.enabled  
   - name: vernemq
