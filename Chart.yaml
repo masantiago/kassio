@@ -54,6 +54,6 @@ dependencies:
     condition: sai.enabled
   - name: adguard-home
     alias: dns
-    version: 5.0.0
+    version: 5.0.3
     repository: https://k8s-at-home.com/charts/
     condition: dns.enabled 
