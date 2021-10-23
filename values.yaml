@@ -46,6 +46,54 @@ node-red:
       accessMode: ReadWriteOnce
       mountPath: /data
 
+mosquitto:
+  enabled: true
+  image:
+    repository: eclipse-mosquitto
+    tag: 2.0.12
+  env:
+    TZ: Europe/Madrid
+  service:
+    main:
+      enabled: true
+      type: NodePort
+      ports:
+        mqtt:
+          enabled: true
+          port: 1883
+          nodePort: 32001
+  persistence:
+    data:
+      enabled: true
+      type: pvc      
+      size: 5Gi
+      storageClass: local-path
+      accessMode: ReadWriteOnce
+      mountPath: /mosquitto/data
+    configinc:
+      enabled: true
+      type: pvc
+      size: 100Mi
+      storageClass: local-path
+      accessMode: ReadWriteOnce
+      mountPath: /mosquitto/configinc
+    auth:
+      enabled: true
+      type: custom
+      readOnly: true      
+      volumeSpec:
+        configMap:
+          name: kassio-mosquitto-auth
+      subPath: 
+        - path: kassio.conf
+          mountPath: /mosquitto/configinc/kassio.conf
+        - path: kassio.pwd
+          mountPath: /mosquitto/configinc/kassio.pwd
+  auth:  
+    enabled: true
+    conf: config/mosquitto/kassio.conf
+    pwd: config/mosquitto/kassio.pwd
+    
 vernemq:
   enabled: true
   image: 
@@ -127,6 +175,8 @@ zigbee2mqtt:
       port: 8080
     experimental:
       new_api: true
+    device_options:
+      legacy: false # https://github.com/Koenkk/zigbee2mqtt/issues/7293#issuecomment-830848563
   nodeSelector:
     kassio/zigbee: "true"
 

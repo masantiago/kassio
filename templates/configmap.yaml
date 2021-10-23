@@ -11,3 +11,17 @@ data:
   vernemq-acl: |-  
 {{ .Files.Get .Values.vernemq.acl | indent 4 }}
 {{- end }}
+---
+{{- if and (.Values.mosquitto.enabled) (.Values.mosquitto.auth.enabled) }}
+apiVersion: v1
+kind: ConfigMap
+metadata:  
+  name: kassio-mosquitto-auth
+  labels:
+{{ include "labels" . | indent 4}}    
+data:  
+  kassio.conf: |-  
+{{ .Files.Get .Values.mosquitto.auth.conf | indent 4 }}
+  kassio.pwd: |-  
+{{ .Files.Get .Values.mosquitto.auth.pwd | indent 4 }}
+{{- end }}
