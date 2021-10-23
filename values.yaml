@@ -89,10 +89,13 @@ mosquitto:
           mountPath: /mosquitto/configinc/kassio.conf
         - path: kassio.pwd
           mountPath: /mosquitto/configinc/kassio.pwd
+        - path: kassio.acl
+          mountPath: /mosquitto/configinc/kassio.acl
   auth:  
     enabled: true
     conf: config/mosquitto/kassio.conf
     pwd: config/mosquitto/kassio.pwd
+    acl: config/mosquitto/kassio.acl
     
 vernemq:
   enabled: true
