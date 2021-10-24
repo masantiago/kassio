@@ -97,42 +97,6 @@ mosquitto:
     pwd: config/mosquitto/kassio.pwd
     acl: config/mosquitto/kassio.acl
     
-vernemq:
-  enabled: true
-  image: 
-    repository: timbrand/vernemq-rpi
-    tag: 1.10.2  
-  persistentVolume:
-    enabled: true
-    size: 5Gi                
-    storageClass: local-path
-    accessMode: ReadWriteOnce  
-  service:
-    type: NodePort
-    mqtt:
-      nodePort: 32000
-  additionalEnv:
-    - name: DOCKER_VERNEMQ_USER_ADMIN
-      value: *password
-    - name: DOCKER_VERNEMQ_USER_HOME-ASSISTANT
-      value: *password
-    - name: DOCKER_VERNEMQ_USER_NODE-RED
-      value: *password
-    - name: DOCKER_VERNEMQ_USER_ZWAVE
-      value: *password
-    - name: DOCKER_VERNEMQ_USER_ZIGBEE
-      value: *password
-  acl: config/vernemq/vmq.acl
-  extraVolumeMounts:
-    - name: vernemq-acl
-      mountPath: /vernemq/etc/vmq.acl
-      subPath: vernemq-acl
-      readOnly: true  
-  extraVolumes:
-    - name: vernemq-acl
-      configMap:
-        name: kassio-vernemq-acl # Must be first extraVolume
-
 zigbee2mqtt:
   enabled: false  
   image: 
@@ -166,7 +130,7 @@ zigbee2mqtt:
     homeassistant: true
     mqtt:
       base_topic: zigbee
-      server: "mqtt://kassio-vernemq"
+      server: "mqtt://kassio-mosquitto"
       user: zigbee
       password: *password      
     advanced:      
@@ -245,7 +209,7 @@ frigate:
         type: edgetpu
         device: usb
     mqtt:      
-      host: kassio-vernemq
+      host: kassio-mosquitto
       topic_prefix: "home-assistant/frigate"
       user: home-assistant
       password: '{FRIGATE_RTSP_PASSWORD}'

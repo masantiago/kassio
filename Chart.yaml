@@ -21,10 +21,6 @@ dependencies:
     version: 9.0.1
     repository: https://k8s-at-home.com/charts/
     condition: node-red.enabled  
-  - name: vernemq
-    version: 1.6.5
-    repository: https://vernemq.github.io/docker-vernemq
-    condition: vernemq.enabled  
   - name: zigbee2mqtt
     version: 9.0.1
     repository: https://k8s-at-home.com/charts/
