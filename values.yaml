@@ -4,7 +4,7 @@ home-assistant:
   enabled: true
   image:
     repository: homeassistant/raspberrypi4-homeassistant
-    tag: 2021.9.6
+    tag: 2021.11.3
   env:
     TZ: Europe/Madrid
   hostNetwork: true
