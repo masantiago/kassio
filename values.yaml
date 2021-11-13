@@ -101,7 +101,7 @@ zigbee2mqtt:
   enabled: false  
   image: 
     repository: koenkk/zigbee2mqtt
-    tag: 1.21.1
+    tag: 1.22.0
   env:
     TZ: Europe/Madrid 
   ingress:
