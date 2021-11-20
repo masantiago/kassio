@@ -4,88 +4,133 @@ home-assistant:
   enabled: true
   image:
     repository: homeassistant/raspberrypi4-homeassistant
-    tag: 0.118.5
+    tag: 2021.11.3
+  env:
+    TZ: Europe/Madrid
   hostNetwork: true
+  dnsPolicy: ClusterFirstWithHostNet
   ingress:
-    enabled: true
-    annotations:
-      kubernetes.io/ingress.class: traefik
+    main:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
   persistence:
-    enabled: true
-    size: 5Gi
-    storageClass: local-path
-    accessMode: ReadWriteOnce
+    config:
+      enabled: true
+      type: pvc      
+      size: 5Gi
+      storageClass: local-path
+      accessMode: ReadWriteOnce
+      mountPath: /config
       
 node-red:
   enabled: true
   image:
     repository: nodered/node-red
-    tag: 1.2.6
-  hostNetwork: true
-  dnsPolicy: ClusterFirstWithHostNet
+    tag: 2.1.3  
   env:
     TZ: Europe/Madrid
+  hostNetwork: true
+  dnsPolicy: ClusterFirstWithHostNet
   ingress:
-    enabled: true
-    annotations:
-      kubernetes.io/ingress.class: traefik
+    main:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
   persistence:
     data:
       enabled: true
+      type: pvc      
       size: 5Gi
       storageClass: local-path
-      accessMode: ReadWriteOnce  
+      accessMode: ReadWriteOnce
+      mountPath: /data
 
-vernemq:
+mosquitto:
   enabled: true
-  image: 
-    repository: timbrand/vernemq-rpi
-    tag: 1.10.2  
-  persistentVolume:
-    enabled: true
-    size: 5Gi                
-    storageClass: local-path
-    accessMode: ReadWriteOnce  
+  image:
+    repository: eclipse-mosquitto
+    tag: 2.0.13
+  env:
+    TZ: Europe/Madrid
   service:
-    type: NodePort
-    mqtt:
-      nodePort: 32000
-  additionalEnv:
-    - name: DOCKER_VERNEMQ_USER_ADMIN
-      value: *password
-    - name: DOCKER_VERNEMQ_USER_HOME-ASSISTANT
-      value: *password
-    - name: DOCKER_VERNEMQ_USER_NODE-RED
-      value: *password
-    - name: DOCKER_VERNEMQ_USER_ZWAVE
-      value: *password
-    - name: DOCKER_VERNEMQ_USER_ZIGBEE
-      value: *password
-  acl: config/vernemq/vmq.acl
-  extraVolumeMounts:
-    - name: vernemq-acl
-      mountPath: /vernemq/etc/vmq.acl
-      subPath: vernemq-acl
-      readOnly: true  
-  extraVolumes:
-    - name: vernemq-acl
-      configMap:
-        name: kassio-vernemq-acl # Must be first extraVolume
-
+    main:
+      enabled: true
+      type: NodePort
+      ports:
+        mqtt:
+          enabled: true
+          port: 1883
+          nodePort: 32001
+  persistence:
+    data:
+      enabled: true
+      type: pvc      
+      size: 5Gi
+      storageClass: local-path
+      accessMode: ReadWriteOnce
+      mountPath: /mosquitto/data
+    configinc:
+      enabled: true
+      type: pvc
+      size: 100Mi
+      storageClass: local-path
+      accessMode: ReadWriteOnce
+      mountPath: /mosquitto/configinc
+    auth:
+      enabled: true
+      type: custom
+      readOnly: true      
+      volumeSpec:
+        configMap:
+          name: kassio-mosquitto-auth
+      subPath: 
+        - path: kassio.conf
+          mountPath: /mosquitto/configinc/kassio.conf
+        - path: kassio.pwd
+          mountPath: /mosquitto/configinc/kassio.pwd
+        - path: kassio.acl
+          mountPath: /mosquitto/configinc/kassio.acl
+  auth:  
+    enabled: true
+    conf: config/mosquitto/kassio.conf
+    pwd: config/mosquitto/kassio.pwd
+    acl: config/mosquitto/kassio.acl
+    
 zigbee2mqtt:
   enabled: false  
   image: 
     repository: koenkk/zigbee2mqtt
-    tag: 1.17.0
+    tag: 1.22.0
   env:
-    TZ: Europe/Madrid    
+    TZ: Europe/Madrid 
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+  securityContext:
+    privileged: true
+  persistence:
+    data:
+      enabled: true
+      type: pvc
+      size: 2Gi                
+      storageClass: local-path
+      accessMode: ReadWriteOnce
+      mountPath: /data
+    usb:
+      enabled: true
+      type: hostPath
+      hostPath: /dev/ttyACM0
+      mountPath: /dev/ttyACM0
   config:
     serial:
       port: /dev/ttyACM0
     homeassistant: true
     mqtt:
       base_topic: zigbee
-      server: "mqtt://kassio-vernemq"
+      server: "mqtt://kassio-mosquitto"
       user: zigbee
       password: *password      
     advanced:      
@@ -97,25 +142,8 @@ zigbee2mqtt:
       port: 8080
     experimental:
       new_api: true
-  ingress:
-    enabled: true
-    annotations:
-      kubernetes.io/ingress.class: traefik
-  persistence:
-    data:
-      enabled: true
-      size: 2Gi                
-      storageClass: local-path
-      accessMode: ReadWriteOnce
-  # Path to your zigbee device in the container
-  additionalVolumeMounts:
-    - name: usb
-      mountPath: /dev/ttyACM0
-  # Path to your zigbee device on the host
-  additionalVolumes:
-    - name: usb
-      hostPath:
-        path: /dev/ttyACM0
+    device_options:
+      legacy: false # https://github.com/Koenkk/zigbee2mqtt/issues/7293#issuecomment-830848563
   nodeSelector:
     kassio/zigbee: "true"
 
@@ -152,16 +180,36 @@ frigate:
   enabled: false  
   image:
     repository: blakeblackshear/frigate
-    tag: 0.8.1-aarch64
-  timezone: Europe/Madrid
-  rtspPassword: *password
-  coral:
-    enabled: true
-    hostPath: /dev/bus/usb
-  shmSize: 1Gi # Memory/camera = (width * height * 3 + 270480)/1048576 = <shm size in mb>
+    tag: 0.9.4-aarch64
+  env:
+    TZ: Europe/Madrid 
+    FRIGATE_RTSP_PASSWORD: *password
+  service:
+    main:
+      ports:
+        rtmp:
+          enabled: true
+  securityContext:
+    privileged: true
+  persistence:
+    usb:
+      enabled: true
+      type: hostPath
+      hostPath: /dev/bus/usb
+      mountPath: /dev/bus/usb
+    cache:
+      enabled: true
+      type: emptyDir
+      medium: Memory
+      sizeLimit: 1Gi # Memory/camera = (width * height * 3 + 270480)/1048576 = <shm size in mb>
+      mountPath: /dev/shm  
   config: |
+    detectors:
+      coral:
+        type: edgetpu
+        device: usb
     mqtt:      
-      host: kassio-vernemq
+      host: kassio-mosquitto
       topic_prefix: "home-assistant/frigate"
       user: home-assistant
       password: '{FRIGATE_RTSP_PASSWORD}'
@@ -214,9 +262,17 @@ sai:
   enabled: false
   image:
     repository: ghcr.io/k8s-at-home/network-ups-tools
-    tag: v2.7.4-2474-gb4a58380
+    tag: v2.7.4
   env:
     TZ: Europe/Madrid
+  securityContext:
+    privileged: true
+  persistence:
+    usb:
+      enabled: true
+      type: hostPath
+      hostPath: /dev/usb
+      mountPath: /dev/usb  
   config:
     files:
       nut.conf: |
@@ -238,20 +294,38 @@ sai:
           instcmds = ALL
       upsmon.conf: |
         MINSUPPLIES 1
-  securityContext:
-    privileged: true
-  # Path to your SAI device in the container
-  additionalVolumeMounts:
-    - name: usb
-      mountPath: /dev/usb
-  # Path to your SAI device on the host
-  additionalVolumes:
-    - name: usb
-      hostPath:
-        path: /dev/usb
-  service:
-    port:
-      protocol: TCP
-      targetPort: server
   nodeSelector:
     kassio/sai: "true"
+
+dns:
+  enabled: true
+  image:
+    repository: adguard/adguardhome
+    tag: v0.106.3
+  env:
+    TZ: Europe/Madrid
+  hostNetwork: true
+  dnsPolicy: ClusterFirstWithHostNet  
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+  persistence:
+    config:
+      enabled: true
+      type: pvc
+      size: 100Mi
+      storageClass: local-path
+      accessMode: ReadWriteOnce
+      mountPath: /opt/adguardhome/conf
+    data:
+      enabled: true
+      type: pvc
+      size: 100Mi
+      storageClass: local-path
+      accessMode: ReadWriteOnce
+      mountPath: /opt/adguardhome/work
+
+nfs:
+  enabled: false

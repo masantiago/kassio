@@ -1,7 +1,7 @@
 apiVersion: v1
 description: A Helm chart for kassio
 name: kassio
-version: 0.4.0
+version: 1.0.0-dev
 keywords:
   - home-assistant
   - node-red
@@ -14,19 +14,15 @@ maintainers:
     email: miguelangel.santiago@hotmail.com
 dependencies:
   - name: home-assistant
-    version: 3.4.0
+    version: 11.1.0
     repository: https://k8s-at-home.com/charts/
     condition: home-assistant.enabled
   - name: node-red
-    version: 4.3.0
+    version: 9.0.1
     repository: https://k8s-at-home.com/charts/
     condition: node-red.enabled  
-  - name: vernemq
-    version: 1.6.5
-    repository: https://vernemq.github.io/docker-vernemq
-    condition: vernemq.enabled  
   - name: zigbee2mqtt
-    version: 3.3.0
+    version: 9.0.1
     repository: https://k8s-at-home.com/charts/
     condition: zigbee2mqtt.enabled
   - name: zwave2mqtt
@@ -34,21 +30,30 @@ dependencies:
     repository: https://k8s-at-home.com/charts/
     condition: zwave2mqtt.enabled
   - name: frigate
-    version: 5.0.1
-    repository: https://blakeblackshear.github.io/blakeshome-charts/
+    version: 6.1.1
+    repository: https://k8s-at-home.com/charts/
     condition: frigate.enabled
   - name: kube-prometheus-stack
     alias: monitoring
-    version: 14.9.0
+    version: 20.0.1
     repository: https://prometheus-community.github.io/helm-charts
     condition: monitoring.enabled
   - name: loki-stack
     alias: logs
-    version: 2.3.1
+    version: 2.5.0
     repository: https://grafana.github.io/helm-charts
     condition: logs.enabled
   - name: network-ups-tools
     alias: sai
-    version: 3.4.0
+    version: 6.0.1
     repository: https://k8s-at-home.com/charts/
     condition: sai.enabled
+  - name: adguard-home
+    alias: dns
+    version: 5.0.3
+    repository: https://k8s-at-home.com/charts/
+    condition: dns.enabled 
+  - name: mosquitto
+    version: 4.0.1
+    repository: https://k8s-at-home.com/charts/
+    condition: mosquitto.enabled

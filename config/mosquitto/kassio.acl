@@ -2,6 +2,7 @@
 
 # ACL for user 'admin'
 user admin
+topic read $SYS/#
 topic #
 
 # ACL for user 'home-assistant'
