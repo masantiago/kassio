@@ -14,6 +14,7 @@ home-assistant:
       enabled: true
       annotations:
         kubernetes.io/ingress.class: traefik
+        cert-manager.io/issuer: kassio-ssl      
   persistence:
     config:
       enabled: true
@@ -329,3 +330,7 @@ dns:
 
 nfs:
   enabled: false
+
+ssl:
+  enabled: true
+  installCRDs: true
