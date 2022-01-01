@@ -1,8 +1,8 @@
 bases:  
-  - ../common/repos.yaml
-  - ../common/environments.yaml
+  - ../bases/repos.yaml
+  - ../bases/environments.yaml
 
-{{ readFile "../common/templates.yaml" }}
+{{ readFile "../bases/templates.yaml" }}
 
 releases:
   - name: kassio-sai
