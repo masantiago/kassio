@@ -1,9 +1,6 @@
 bases:    
+  - ../bases/repos.yaml
   - ../bases/environments.yaml
-
-repositories:
-  - name: hashicorp
-    url: https://helm.releases.hashicorp.com
 
 {{ readFile "../bases/templates.yaml" }}
 

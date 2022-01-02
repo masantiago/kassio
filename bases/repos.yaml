@@ -2,3 +2,5 @@
 repositories:
   - name: k8s-at-home
     url: https://k8s-at-home.com/charts/
+  - name: hashicorp
+    url: https://helm.releases.hashicorp.com
