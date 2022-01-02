@@ -11,4 +11,4 @@ releases:
   - name: kassio-vault    
     <<: *release
     chart: hashicorp/vault
-    version: 0.18.0    
+    version: 0.18.0

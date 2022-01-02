@@ -1,6 +1,6 @@
 ---
 environmentPath: ".."
 
-charts: 
+releases: 
   vault: false
   sai: true

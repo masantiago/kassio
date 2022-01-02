@@ -5,7 +5,7 @@ templates:
     installedTemplate: 
       '{{- if contains "kassio-" .Release.Name -}}
        {{- $releaseParam := (substr 7 (len .Release.Name) .Release.Name) -}}
-       {{- or (index .Values.charts $releaseParam) false -}}
+       {{- or (index .Values.releases $releaseParam) false -}}
        {{- else -}}
        false
        {{- end -}}'
