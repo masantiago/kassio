@@ -2,4 +2,5 @@
 environmentPath: ".."
 
 charts: 
+  vault: false
   sai: true
