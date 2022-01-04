@@ -5,7 +5,14 @@ injector:
 server:
   image:
     repository: hashicorp/vault
-    tag: 1.9.0
+    tag: 1.9.0  
+  service:
+    type: NodePort
+    nodePort: 32000
+  dataStorage:
+    size: 5Gi    
+    storageClass: local-path
+    mountPath: /vault/data
   standalone:
     enabled: true
     config: |
@@ -17,8 +24,3 @@ server:
       storage "file" {
         path = "/vault/data"
       }
-  dataStorage:
-    size: 5Gi    
-    storageClass: local-path
-    mountPath: /vault/data    
-  
