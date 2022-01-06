@@ -22,11 +22,9 @@ prometheus:
             requests:
               storage: 5Gi
           storageClassName: local-path
-alertmanager:
-  enabled: false
-prometheus:
-  prometheusSpec:
     nodeSelector:
       kassio/monitoring: "true"
+alertmanager:
+  enabled: false    
 nodeSelector:
   kassio/monitoring: "true"
