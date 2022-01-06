@@ -4,4 +4,5 @@ environmentPath: ".."
 components: 
   vault: false
   broker: true
+  monitoring: true
   sai: true
