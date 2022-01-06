@@ -1,6 +1,7 @@
 ---
 environmentPath: ".."
 
-releases: 
+components: 
   vault: false
+  broker: true
   sai: true

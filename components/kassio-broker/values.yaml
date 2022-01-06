@@ -1,0 +1,64 @@
+---
+image:
+  repository: eclipse-mosquitto
+  tag: 2.0.13
+service:
+  main:
+    enabled: true
+    type: NodePort
+    ports:
+      mqtt:
+        enabled: true
+        port: 1883
+        nodePort: 32002
+persistence:
+  data:
+    enabled: true
+    type: pvc      
+    size: 5Gi
+    storageClass: local-path
+    accessMode: ReadWriteOnce
+    mountPath: /mosquitto/data
+  configinc:
+    enabled: true
+    type: pvc
+    size: 100Mi
+    storageClass: local-path
+    accessMode: ReadWriteOnce
+    mountPath: /mosquitto/configinc
+configmap:
+  auth:
+    enabled: true
+    data:
+      kassio.conf: |-  
+        password_file /mosquitto/configinc/kassio.pwd
+        acl_file /mosquitto/configinc/kassio.acl
+      kassio.acl: |-  
+        # IMPORTANT: Be careful with blank spaces after user name. It makes the ACL invalid.
+
+        # ACL for user 'admin'
+        user admin
+        topic read $SYS/#
+        topic #
+
+        # ACL for user 'home-assistant'
+        user home-assistant
+        topic home-assistant/#
+        topic zigbee/#
+        topic zwave/#
+
+        # ACL for user 'node-red'
+        user node-red
+        topic #
+
+        # ACL for user 'zwave'
+        user zwave
+        topic zwave/#
+        topic home-assistant/#
+
+        # ACL for user 'zigbee'
+        user zigbee
+        topic zigbee/#
+        topic home-assistant/#
+
+        # End of ACLs

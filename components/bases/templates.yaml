@@ -4,8 +4,8 @@ templates:
     namespace: kassio
     installedTemplate: 
       '{{- if contains "kassio-" .Release.Name -}}
-       {{- $releaseParam := (substr 7 (len .Release.Name) .Release.Name) -}}
-       {{- or (index .Values.releases $releaseParam) false -}}
+       {{- $component := (substr 7 (len .Release.Name) .Release.Name) -}}
+       {{- or (index .Values.components $component) false -}}
        {{- else -}}
        false
        {{- end -}}'

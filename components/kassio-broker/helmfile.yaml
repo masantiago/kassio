@@ -1,0 +1,11 @@
+bases:    
+  - ../bases/repos.yaml
+  - ../bases/environments.yaml
+
+{{ readFile "../bases/templates.yaml" }}
+
+releases:
+  - name: kassio-broker    
+    <<: *release
+    chart: k8s-at-home/mosquitto
+    version: 4.2.0
