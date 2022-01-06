@@ -26,6 +26,20 @@ persistence:
     storageClass: local-path
     accessMode: ReadWriteOnce
     mountPath: /mosquitto/configinc
+  auth:
+    enabled: true
+    type: custom
+    readOnly: true      
+    volumeSpec:
+      configMap:
+        name: kassio-broker-auth
+    subPath: 
+      - path: kassio.conf
+        mountPath: /mosquitto/configinc/kassio.conf
+      - path: kassio.pwd
+        mountPath: /mosquitto/configinc/kassio.pwd
+      - path: kassio.acl
+        mountPath: /mosquitto/configinc/kassio.acl
 configmap:
   auth:
     enabled: true
