@@ -1,5 +1,0 @@
----
-environments:
-  default:
-    values:
-      - ../vars/default.yaml

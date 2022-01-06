@@ -13,6 +13,6 @@ templates:
     values:    
       - values.yaml
       - "{{ .Values.environmentPath }}/{{ .Release.Name }}/values-{{ .Environment.Name }}.yaml"
-      - ../vars/common.gotmpl
+      - ../../vars/common.gotmpl
     secrets:
       - secrets.yaml
