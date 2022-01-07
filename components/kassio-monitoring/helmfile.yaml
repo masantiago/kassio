@@ -9,3 +9,5 @@ releases:
     <<: *release
     chart: prometheus/kube-prometheus-stack
     version: 20.0.1
+    needs: 
+      - kassio/kassio-logs
