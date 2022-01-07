@@ -1,0 +1,8 @@
+---
+loki:
+  persistence:
+    enabled: true
+    storageClassName: local-path
+    size: 5Gi  
+  nodeSelector:
+    kassio/monitoring: "true"

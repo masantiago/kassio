@@ -5,4 +5,5 @@ components:
   vault: false
   broker: true
   monitoring: true
+  logs: true
   sai: true
