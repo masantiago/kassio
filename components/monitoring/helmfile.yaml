@@ -1,0 +1,16 @@
+bases:  
+  - ../bases/repos.yaml
+  - ../bases/environments.yaml
+
+{{ readFile "../bases/templates.yaml" }}
+
+commonLabels:
+  component: monitoring
+
+releases:
+  - name: kassio-monitoring
+    <<: *release
+    chart: prometheus/kube-prometheus-stack
+    version: 20.0.1
+    needs: 
+      - kassio/kassio-logs

@@ -4,10 +4,11 @@ bases:
 
 {{ readFile "../bases/templates.yaml" }}
 
+commonLabels:
+  component: sai
+
 releases:
-  - name: kassio-monitoring
+  - name: kassio-sai
     <<: *release
-    chart: prometheus/kube-prometheus-stack
-    version: 20.0.1
-    needs: 
-      - kassio/kassio-logs
+    chart: k8s-at-home/network-ups-tools
+    version: 6.1.0

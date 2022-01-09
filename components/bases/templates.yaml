@@ -3,16 +3,11 @@ templates:
   release: &release
     namespace: kassio
     installedTemplate: 
-      '{{- if contains "kassio-" .Release.Name -}}
-       {{- $component := (substr 7 (len .Release.Name) .Release.Name) -}}
-       {{- or (index .Values.components $component) false -}}
-       {{- else -}}
-       false
-       {{- end -}}'
+      '{{- or (index .Values.components .Release.Labels.component) false -}}'
     missingFileHandler: Warn
     values:    
       - values.yaml
-      - "{{ .Values.environmentPath }}/{{ .Release.Name }}/values-{{ .Environment.Name }}.yaml"
+      - "{{ .Values.environmentPath }}/{{ .Release.Labels.component }}/values-{{ .Environment.Name }}.yaml"
       - ../../vars/common.gotmpl
     secrets:
       - secrets.yaml

@@ -1,11 +1,14 @@
-bases:    
+bases:  
   - ../bases/repos.yaml
   - ../bases/environments.yaml
 
 {{ readFile "../bases/templates.yaml" }}
 
+commonLabels:
+  component: logs
+
 releases:
-  - name: kassio-broker    
+  - name: kassio-logs
     <<: *release
-    chart: k8s-at-home/mosquitto
-    version: 4.2.0
+    chart: grafana/loki-stack
+    version: 2.5.0

@@ -4,6 +4,9 @@ bases:
 
 {{ readFile "../bases/templates.yaml" }}
 
+commonLabels:
+  component: vault
+
 releases:
   - name: kassio-vault    
     <<: *release
