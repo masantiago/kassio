@@ -7,7 +7,9 @@ components:
   broker:
     enabled: true
   nvr:
-    enabled: true
+    enabled: false
+    coral:
+      enabled: true
     qsv:
       enabled: true
   monitoring:
@@ -15,4 +17,4 @@ components:
     logs:
       enabled: true
   sai:
-    enabled: true
+    enabled: false

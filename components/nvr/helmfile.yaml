@@ -13,6 +13,8 @@ releases:
     <<: *release
     chart: k8s-at-home/frigate
     version: 6.1.1
+    labels:
+      element: coral
     needs:
       - kassio/kassio-broker
 
