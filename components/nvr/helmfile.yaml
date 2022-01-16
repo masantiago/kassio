@@ -15,4 +15,13 @@ releases:
     version: 6.1.1
     needs:
       - kassio/kassio-broker
+
+  - name: kassio-nvr-qsv
+    <<: *release
+    chart: k8s-at-home/frigate
+    version: 6.1.1
+    labels:
+      element: qsv
+    needs:
+      - kassio/kassio-broker
   

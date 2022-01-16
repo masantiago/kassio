@@ -8,6 +8,8 @@ components:
     enabled: true
   nvr:
     enabled: true
+    qsv:
+      enabled: true
   monitoring:
     enabled: true
     logs:
