@@ -6,6 +6,8 @@ components:
     enabled: false
   broker:
     enabled: true
+  zigbee:
+    enabled: true
   nvr:
     enabled: false
     coral:

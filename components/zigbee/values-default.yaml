@@ -1,0 +1,14 @@
+---
+persistence:
+  usb:
+    hostPath: /dev/ttyACM0
+config:
+  advanced:
+    network_key: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    channel: 11 # https://www.metageek.com/training/resources/zigbee-wifi-coexistence.html
+ingress:
+  main:
+    hosts:
+      - host: zigbee.my-kassio.com
+        paths:
+          - path: /
