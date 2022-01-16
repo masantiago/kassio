@@ -6,6 +6,8 @@ components:
     enabled: false
   broker:
     enabled: true
+  nvr:
+    enabled: true
   monitoring:
     enabled: true
     logs:

@@ -1,0 +1,18 @@
+bases:  
+  - ../bases/repos.yaml
+  - ../bases/environments.yaml
+
+{{ readFile "../bases/templates.yaml" }}
+
+commonLabels:
+  component: nvr
+
+releases:
+
+  - name: kassio-nvr
+    <<: *release
+    chart: k8s-at-home/frigate
+    version: 6.1.1
+    needs:
+      - kassio/kassio-broker
+  
