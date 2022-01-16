@@ -8,9 +8,17 @@ commonLabels:
   component: monitoring
 
 releases:
+
   - name: kassio-monitoring
     <<: *release
     chart: prometheus/kube-prometheus-stack
     version: 20.0.1
-    needs: 
+    needs:
       - kassio/kassio-logs
+
+  - name: kassio-logs
+    <<: *release
+    chart: grafana/loki-stack
+    version: 2.5.0
+    labels:
+      element: logs

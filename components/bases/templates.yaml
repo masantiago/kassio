@@ -6,8 +6,20 @@ templates:
       '{{- or (index .Values.components .Release.Labels.component) false -}}'
     missingFileHandler: Warn
     values:    
-      - values.yaml
-      - "{{ .Values.environmentPath }}/{{ .Release.Labels.component }}/values-{{ .Environment.Name }}.yaml"
+      - '{{- if index .Release.Labels "element" -}}
+        values-{{ .Release.Labels.element }}.yaml
+        {{- else -}}
+        values.yaml
+        {{- end -}}'
+      - '{{- if index .Release.Labels "element" -}}
+        {{ .Values.environmentPath }}/{{ .Release.Labels.component }}/values-{{ .Release.Labels.element }}-{{ .Environment.Name }}.yaml
+        {{- else -}}
+        {{ .Values.environmentPath }}/{{ .Release.Labels.component }}/values-{{ .Environment.Name }}.yaml
+        {{- end -}}'
       - ../../vars/common.gotmpl
     secrets:
-      - secrets.yaml
+      - '{{- if index .Release.Labels "element" -}}
+        secrets-{{ .Release.Labels.element }}.yaml
+        {{- else -}}
+        secrets.yaml
+        {{- end -}}'
