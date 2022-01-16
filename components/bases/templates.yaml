@@ -3,7 +3,25 @@ templates:
   release: &release
     namespace: kassio
     installedTemplate: 
-      '{{- or (index .Values.components .Release.Labels.component) false -}}'
+      '{{- $component := (index .Values.components .Release.Labels.component) -}}
+       {{- with $component -}}
+         {{- if $component.enabled -}}
+           {{- if index $.Release.Labels "element" -}}
+             {{- $element := (index $component $.Release.Labels.element) -}}
+             {{- with $element -}}
+               {{- $element.enabled -}}
+             {{- else -}}
+               {{- $component.enabled -}}
+             {{- end -}}
+           {{- else -}}
+             {{- $component.enabled -}}
+           {{- end -}}
+         {{- else -}}
+           {{- $component.enabled -}}
+         {{- end -}}   
+       {{- else -}}
+       false
+       {{- end -}}'
     missingFileHandler: Warn
     values:    
       - '{{- if index .Release.Labels "element" -}}

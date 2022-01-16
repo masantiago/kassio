@@ -2,8 +2,13 @@
 environmentPath: ".."
 
 components: 
-  vault: false
-  broker: true
-  monitoring: true
-  logs: true
-  sai: true
+  vault:
+    enabled: false
+  broker:
+    enabled: true
+  monitoring:
+    enabled: true
+    logs:
+      enabled: true
+  sai:
+    enabled: true
