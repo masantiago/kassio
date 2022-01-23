@@ -24,6 +24,8 @@ components:
       enabled: true
   monitoring:
     enabled: true
+    metrics:
+      enabled: true
     logs:
       enabled: true
   sai:

@@ -9,11 +9,14 @@ commonLabels:
 
 releases:
 
-  - name: kassio-monitoring
+  - name: kassio-metrics
     <<: *release
     chart: prometheus/kube-prometheus-stack
     version: 20.0.1
+    labels:
+      element: metrics
     needs:
+      - kassio/kassio-db-metrics
       - kassio/kassio-logs
 
   - name: kassio-logs
