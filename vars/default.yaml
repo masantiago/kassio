@@ -4,6 +4,12 @@ environmentPath: ".."
 components: 
   vault:
     enabled: false
+  db:
+    enabled: false
+    frontend:
+      enabled: true
+    metrics:
+      enabled: true
   engine:
     enabled: true
   broker:

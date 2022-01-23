@@ -1,0 +1,13 @@
+---
+architecture: standalone
+authEnabled: true
+database: home_assistant
+user: 
+  name: home-assistant
+persistence:
+  enabled: true
+  size: 50Gi
+  storageClass: local-path
+influxdb:
+  nodeSelector:
+    kassio/monitoring: "true"        
