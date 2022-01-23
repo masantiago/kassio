@@ -4,6 +4,8 @@ environmentPath: ".."
 components: 
   vault:
     enabled: false
+  engine:
+    enabled: true
   broker:
     enabled: true
   zigbee:

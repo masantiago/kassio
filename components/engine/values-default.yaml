@@ -1,0 +1,7 @@
+---
+ingress:
+  main:
+    hosts:
+      - host: node-red.my-kassio.com
+        paths:
+          - path: /
