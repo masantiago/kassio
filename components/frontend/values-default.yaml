@@ -2,6 +2,6 @@
 ingress:
   main:
     hosts:
-      - host: home-assistant.perales-kassio.freemyip.com
+      - host: home-assistant.my-kassio.com
         paths:
           - path: /
