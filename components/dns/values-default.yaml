@@ -1,0 +1,7 @@
+---
+ingress:
+  main:
+    hosts:
+      - host: dns.my-kassio.com
+        paths:
+          - path: /

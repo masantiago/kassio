@@ -1,0 +1,26 @@
+---
+image:
+  repository: adguard/adguardhome
+  tag: v0.106.3
+hostNetwork: true
+dnsPolicy: ClusterFirstWithHostNet  
+ingress:
+  main:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: traefik
+persistence:
+  config:
+    enabled: true
+    type: pvc
+    size: 100Mi
+    storageClass: local-path
+    accessMode: ReadWriteOnce
+    mountPath: /opt/adguardhome/conf
+  data:
+    enabled: true
+    type: pvc
+    size: 100Mi
+    storageClass: local-path
+    accessMode: ReadWriteOnce
+    mountPath: /opt/adguardhome/work

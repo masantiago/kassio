@@ -6,6 +6,8 @@ components:
     enabled: true
   vault:
     enabled: false
+  dns:
+    enabled: true
   db:
     enabled: false
     frontend:
