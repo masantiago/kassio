@@ -21,7 +21,3 @@
 *.tmproj
 # OWNERS file for Kubernetes
 OWNERS
-config/home-assistant/
-config/node-red/
-config/zwave/
-scripts/
