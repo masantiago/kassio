@@ -1,6 +1,5 @@
 environments:
   default:
-  perales:
-
+  
 helmfiles:
   - ./components/*/helmfile.yaml
