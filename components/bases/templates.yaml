@@ -30,11 +30,11 @@ templates:
         values.yaml
         {{- end -}}'
       - '{{- if index .Release.Labels "element" -}}
-        {{ .Values.environmentPath }}/{{ .Release.Labels.component }}/values-{{ .Release.Labels.element }}-{{ .Environment.Name }}.yaml
+        {{ requiredEnv "KASSIO_PATH" }}/components/{{ .Release.Labels.component }}/values-{{ .Release.Labels.element }}-{{ .Environment.Name }}.yaml
         {{- else -}}
-        {{ .Values.environmentPath }}/{{ .Release.Labels.component }}/values-{{ .Environment.Name }}.yaml
+        {{ requiredEnv "KASSIO_PATH" }}/components/{{ .Release.Labels.component }}/values-{{ .Environment.Name }}.yaml
         {{- end -}}'
-      - ../../vars/common.gotmpl
+      - ../bases/values.gotmpl
     secrets:
       - '{{- if index .Release.Labels "element" -}}
         secrets-{{ .Release.Labels.element }}.yaml

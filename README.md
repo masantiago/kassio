@@ -25,3 +25,10 @@ $ helm install --name mas-iot --namespace mas-iot .
 ```console
 $ mosquitto_passwd -U mosquitto-users
 ```
+
+k3sup install --ip $IP --user $USER --merge --local-path $HOME/.kube/config \
+  --context vallecas-iot \
+  --k3s-version v1.19.9+k3s1 \
+  --k3s-extra-args '--node-ip 192.168.1.201 --node-external-ip 10.8.0.1 --advertise-address 192.168.1.201'
+
+k3sup join --ip $AGENT_IP --server-ip $SERVER_IP --user $USER --k3s-version v1.19.9+k3s1 --k3s-extra-args '--node-ip 192.168.1.202 --node-external-ip 10.8.0.8'

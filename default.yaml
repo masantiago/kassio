@@ -1,6 +1,4 @@
 ---
-environmentPath: ".."
-
 components: 
   frontend:
     enabled: true

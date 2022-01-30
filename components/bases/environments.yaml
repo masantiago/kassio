@@ -1,0 +1,8 @@
+---
+environments:
+  default:
+    values:
+      - '{{ requiredEnv "KASSIO_PATH" }}/default.yaml' 
+  perales:
+    values:
+      - '{{ requiredEnv "KASSIO_PATH" }}/perales.yaml' 
