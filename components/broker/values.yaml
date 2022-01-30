@@ -76,3 +76,5 @@ configmap:
         topic home-assistant/#
 
         # End of ACLs
+nodeSelector:
+  kassio/broker: "true"

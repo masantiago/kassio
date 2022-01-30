@@ -10,4 +10,4 @@ persistence:
   storageClass: local-path
 influxdb:
   nodeSelector:
-    kassio/monitoring: "true"        
+    kassio/db: "true"

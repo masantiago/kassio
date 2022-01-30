@@ -9,4 +9,4 @@ primary:
     size: 10Gi
     storageClass: local-path        
   nodeSelector:
-    kassio/monitoring: "true"
+    kassio/db: "true"

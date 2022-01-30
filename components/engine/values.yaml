@@ -17,3 +17,5 @@ persistence:
     storageClass: local-path
     accessMode: ReadWriteOnce
     mountPath: /data
+nodeSelector:
+  kassio/engine: "true"

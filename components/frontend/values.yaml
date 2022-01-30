@@ -17,3 +17,5 @@ persistence:
     storageClass: local-path
     accessMode: ReadWriteOnce
     mountPath: /config
+nodeSelector:
+  kassio/frontend: "true"

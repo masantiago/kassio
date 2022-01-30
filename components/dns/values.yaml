@@ -24,3 +24,5 @@ persistence:
     storageClass: local-path
     accessMode: ReadWriteOnce
     mountPath: /opt/adguardhome/work
+nodeSelector:
+  kassio/dns: "true"
