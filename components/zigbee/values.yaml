@@ -13,7 +13,6 @@ persistence:
   data:
     enabled: true
     type: pvc
-    size: 2Gi                
     storageClass: local-path
     accessMode: ReadWriteOnce
     mountPath: /data

@@ -5,8 +5,7 @@ auth:
   username: home-assistant  
 primary:
   persistence:
-    enabled: true
-    size: 10Gi
+    enabled: true    
     storageClass: local-path        
   nodeSelector:
     kassio/db: "true"

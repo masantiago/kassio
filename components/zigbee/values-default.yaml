@@ -2,6 +2,8 @@
 persistence:
   usb:
     hostPath: /dev/ttyACM0
+  data:
+    size: 2Gi
 config:
   advanced:
     network_key: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -9,6 +11,6 @@ config:
 ingress:
   main:
     hosts:
-      - host: zigbee.my-kassio.com
+      - host: zigbee.your-kassio.com
         paths:
           - path: /

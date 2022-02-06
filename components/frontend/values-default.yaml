@@ -2,6 +2,9 @@
 ingress:
   main:
     hosts:
-      - host: home-assistant.my-kassio.com
+      - host: home-assistant.your-kassio.com
         paths:
           - path: /
+persistence:
+  config:
+    size: 5Gi

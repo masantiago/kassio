@@ -2,7 +2,6 @@
 loki:
   persistence:
     enabled: true
-    storageClassName: local-path
-    size: 5Gi  
+    storageClassName: local-path    
   nodeSelector:
     kassio/monitoring: "true"

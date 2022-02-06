@@ -6,7 +6,6 @@ user:
   name: home-assistant
 persistence:
   enabled: true
-  size: 50Gi
   storageClass: local-path
 influxdb:
   nodeSelector:

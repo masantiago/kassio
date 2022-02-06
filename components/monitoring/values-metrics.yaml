@@ -12,15 +12,10 @@ kubeEtcd:
   enabled: false
 prometheus:
   prometheusSpec:
-    retention: 15d
-    retentionSize: 5GiB
     storageSpec:
       volumeClaimTemplate:
         spec:
           accessModes: ["ReadWriteOnce"]
-          resources:
-            requests:
-              storage: 5Gi
           storageClassName: local-path
     nodeSelector:
       kassio/monitoring: "true"

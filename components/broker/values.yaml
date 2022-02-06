@@ -15,14 +15,12 @@ persistence:
   data:
     enabled: true
     type: pvc      
-    size: 5Gi
     storageClass: local-path
     accessMode: ReadWriteOnce
     mountPath: /mosquitto/data
   configinc:
     enabled: true
-    type: pvc
-    size: 100Mi
+    type: pvc    
     storageClass: local-path
     accessMode: ReadWriteOnce
     mountPath: /mosquitto/configinc

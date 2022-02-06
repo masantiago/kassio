@@ -13,8 +13,7 @@ persistence:
   cache:
     enabled: true
     type: emptyDir
-    medium: Memory
-    sizeLimit: 1Gi # Memory/camera = (width * height * 3 + 270480)/1048576 = <shm size in mb>
+    medium: Memory    
     mountPath: /dev/shm  
 nodeSelector:
   kassio/nvr-qsv: "true"

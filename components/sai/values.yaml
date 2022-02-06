@@ -8,7 +8,6 @@ persistence:
   usb:
     enabled: true
     type: hostPath
-    hostPath: /dev/usb
     mountPath: /dev/usb  
 config:
   files:

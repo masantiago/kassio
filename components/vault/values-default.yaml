@@ -1,0 +1,4 @@
+---
+server:
+  dataStorage:
+    size: 5Gi
