@@ -1,0 +1,11 @@
+---
+architecture: standalone
+auth:
+  database: home-assistant
+  username: home-assistant  
+primary:
+  persistence:
+    enabled: true    
+    storageClass: local-path        
+  nodeSelector:
+    kassio/db: "true"

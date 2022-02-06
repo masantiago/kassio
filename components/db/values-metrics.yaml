@@ -1,0 +1,12 @@
+---
+architecture: standalone
+authEnabled: true
+database: home_assistant
+user: 
+  name: home-assistant
+persistence:
+  enabled: true
+  storageClass: local-path
+influxdb:
+  nodeSelector:
+    kassio/db: "true"

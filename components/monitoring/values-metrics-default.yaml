@@ -1,0 +1,15 @@
+---
+grafana:
+  ingress:
+    hosts:
+      - monitoring.your-kassio.com
+prometheus:
+  prometheusSpec:
+    retention: 15d
+    retentionSize: 5GiB
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          resources:
+            requests:
+              storage: 5Gi

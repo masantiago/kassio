@@ -1,0 +1,19 @@
+---
+image:
+  repository: blakeblackshear/frigate
+  tag: 0.9.4-amd64
+service:
+  main:
+    ports:
+      rtmp:
+        enabled: true
+securityContext:
+  privileged: true
+persistence:
+  cache:
+    enabled: true
+    type: emptyDir
+    medium: Memory    
+    mountPath: /dev/shm  
+nodeSelector:
+  kassio/nvr-qsv: "true"

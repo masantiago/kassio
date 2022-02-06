@@ -1,1 +1,0 @@
-The chart {{ .Chart.Name }} has been installed successfully.

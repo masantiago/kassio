@@ -1,0 +1,34 @@
+---
+components: 
+  broker:
+    enabled: true
+  db:
+    enabled: false
+    frontend:
+      enabled: true
+    metrics:
+      enabled: true
+  dns:
+    enabled: true  
+  engine:
+    enabled: true  
+  frontend:
+    enabled: true
+  monitoring:
+    enabled: true
+    metrics:
+      enabled: true
+    logs:
+      enabled: true
+  nvr:
+    enabled: false
+    coral:
+      enabled: true
+    qsv:
+      enabled: true 
+  sai:
+    enabled: false 
+  vault:
+    enabled: false    
+  zigbee:
+    enabled: true    

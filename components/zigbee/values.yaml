@@ -1,0 +1,41 @@
+---
+image: 
+  repository: koenkk/zigbee2mqtt
+  tag: 1.22.0
+ingress:
+  main:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: traefik
+securityContext:
+  privileged: true
+persistence:
+  data:
+    enabled: true
+    type: pvc
+    storageClass: local-path
+    accessMode: ReadWriteOnce
+    mountPath: /data
+  usb:
+    enabled: true
+    type: hostPath    
+    mountPath: /dev/ttyACM0
+config:
+  serial:
+    port: /dev/ttyACM0
+  homeassistant: true
+  mqtt:
+    base_topic: zigbee
+    server: "mqtt://kassio-broker"
+    user: zigbee    
+  advanced:      
+    homeassistant_discovery_topic: "home-assistant"
+    homeassistant_status_topic: "home-assistant/status"    
+  frontend:
+    port: 8080
+  experimental:
+    new_api: true
+  device_options:
+    legacy: false # https://github.com/Koenkk/zigbee2mqtt/issues/7293#issuecomment-830848563
+nodeSelector:
+  kassio/zigbee: "true"

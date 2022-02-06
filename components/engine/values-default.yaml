@@ -1,0 +1,10 @@
+---
+ingress:
+  main:
+    hosts:
+      - host: engine.your-kassio.com
+        paths:
+          - path: /
+persistence:
+  data:
+    size: 5Gi

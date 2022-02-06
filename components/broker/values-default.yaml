@@ -1,0 +1,6 @@
+---
+persistence:
+  configinc:
+    size: 100Mi  
+  data:
+    size: 5Gi

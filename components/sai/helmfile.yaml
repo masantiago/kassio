@@ -1,0 +1,14 @@
+bases:  
+  - ../bases/repos.yaml
+  - ../bases/environments.yaml
+
+{{ readFile "../bases/templates.yaml" }}
+
+commonLabels:
+  component: sai
+
+releases:
+  - name: kassio-sai
+    <<: *release
+    chart: k8s-at-home/network-ups-tools
+    version: 6.1.0

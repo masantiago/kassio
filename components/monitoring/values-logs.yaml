@@ -1,0 +1,7 @@
+---
+loki:
+  persistence:
+    enabled: true
+    storageClassName: local-path    
+  nodeSelector:
+    kassio/monitoring: "true"

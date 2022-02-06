@@ -1,0 +1,23 @@
+---
+config: |
+  detectors:
+    coral:
+      type: edgetpu
+      device: usb
+  mqtt:      
+    host: kassio-broker
+    topic_prefix: "home-assistant/nvr"
+    user: home-assistant
+    password: '{FRIGATE_RTSP_PASSWORD}'
+  ffmpeg:
+    hwaccel_args:
+      - -c:v
+      - h264_v4l2m2m
+  objects:
+    track:
+      - person
+persistence:
+  usb:
+    hostPath: /dev/bus/usb
+  cache:
+    sizeLimit: 1Gi # Memory/camera = (width * height * 3 + 270480)/1048576 = <shm size in mb>

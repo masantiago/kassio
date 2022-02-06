@@ -1,0 +1,23 @@
+---
+image:
+  repository: blakeblackshear/frigate
+  tag: 0.9.4-aarch64
+service:
+  main:
+    ports:
+      rtmp:
+        enabled: true
+securityContext:
+  privileged: true
+persistence:
+  usb:
+    enabled: true
+    type: hostPath
+    mountPath: /dev/bus/usb
+  cache:
+    enabled: true
+    type: emptyDir
+    medium: Memory
+    mountPath: /dev/shm  
+nodeSelector:
+  kassio/nvr-coral: "true"

@@ -1,0 +1,20 @@
+---
+image:
+  repository: homeassistant/raspberrypi4-homeassistant
+  tag: 2021.11.3
+hostNetwork: true
+dnsPolicy: ClusterFirstWithHostNet
+ingress:
+  main:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: traefik
+persistence:
+  config:
+    enabled: true
+    type: pvc      
+    storageClass: local-path
+    accessMode: ReadWriteOnce
+    mountPath: /config
+nodeSelector:
+  kassio/frontend: "true"

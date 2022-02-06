@@ -1,0 +1,24 @@
+---
+injector:
+  enabled: false
+server:
+  image:
+    repository: hashicorp/vault
+    tag: 1.9.0  
+  service:
+    type: NodePort
+    nodePort: 32000
+  dataStorage:
+    storageClass: local-path
+    mountPath: /vault/data
+  standalone:
+    enabled: true
+    config: |
+      listener "tcp" {
+        tls_disable = 1
+        address = "[::]:8200"
+        cluster_address = "[::]:8201"
+      }
+      storage "file" {
+        path = "/vault/data"
+      }

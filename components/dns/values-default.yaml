@@ -1,0 +1,12 @@
+---
+ingress:
+  main:
+    hosts:
+      - host: dns.your-kassio.com
+        paths:
+          - path: /
+persistence:
+  config:
+    size: 100Mi
+  data:
+    size: 100Mi

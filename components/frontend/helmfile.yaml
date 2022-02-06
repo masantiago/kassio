@@ -1,0 +1,23 @@
+bases:  
+  - ../bases/repos.yaml
+  - ../bases/environments.yaml
+
+{{ readFile "../bases/templates.yaml" }}
+
+commonLabels:
+  component: frontend
+
+releases:
+  - name: kassio-frontend
+    <<: *release
+    chart: k8s-at-home/home-assistant
+    version: 11.1.0
+    needs:
+      - kassio/kassio-db-frontend      
+      - kassio/kassio-dns
+      - kassio/kassio-engine
+      - kassio/kassio-metrics
+      - kassio/kassio-nvr
+      - kassio/kassio-nvr-qsv
+      - kassio/kassio-sai
+      - kassio/kassio-zigbee

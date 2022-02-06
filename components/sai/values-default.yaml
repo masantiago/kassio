@@ -1,0 +1,4 @@
+---
+persistence:
+  usb:
+    hostPath: /dev/usb

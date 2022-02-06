@@ -1,0 +1,14 @@
+bases:  
+  - ../bases/repos.yaml
+  - ../bases/environments.yaml
+
+{{ readFile "../bases/templates.yaml" }}
+
+commonLabels:
+  component: dns
+
+releases:
+  - name: kassio-dns
+    <<: *release
+    chart: k8s-at-home/adguard-home
+    version: 5.0.3

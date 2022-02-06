@@ -1,0 +1,29 @@
+---
+image:
+  repository: ghcr.io/k8s-at-home/network-ups-tools
+  tag: v2.7.4
+securityContext:
+  privileged: true
+persistence:
+  usb:
+    enabled: true
+    type: hostPath
+    mountPath: /dev/usb  
+config:
+  files:
+    nut.conf: |
+      MODE=standalone
+    upsd.conf: |
+      MAXAGE 15
+      STATEPATH /var/run/nut
+      LISTEN 0.0.0.0 3493
+      MAXCONN 1024        
+    ups.conf: |
+      [salicru]
+        driver = blazer_usb
+        port = auto
+        desc = "SPS ONE 500"
+    upsmon.conf: |
+      MINSUPPLIES 1
+nodeSelector:
+  kassio/sai: "true"

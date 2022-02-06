@@ -1,0 +1,10 @@
+---
+ingress:
+  main:
+    hosts:
+      - host: frontend.your-kassio.com
+        paths:
+          - path: /
+persistence:
+  config:
+    size: 5Gi
