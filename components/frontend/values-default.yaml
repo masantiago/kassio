@@ -2,7 +2,7 @@
 ingress:
   main:
     hosts:
-      - host: home-assistant.your-kassio.com
+      - host: frontend.your-kassio.com
         paths:
           - path: /
 persistence:

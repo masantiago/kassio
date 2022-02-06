@@ -2,7 +2,7 @@
 ingress:
   main:
     hosts:
-      - host: home-assistant.perales-kassio.freemyip.com
+      - host: engine.your-kassio.com
         paths:
           - path: /
 persistence:
