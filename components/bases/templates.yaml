@@ -25,9 +25,9 @@ templates:
     missingFileHandler: Warn
     values:    
       - '{{- if index .Release.Labels "element" -}}
-        values-{{ .Release.Labels.element }}.yaml
+        values-{{ .Release.Labels.element }}.gotmpl
         {{- else -}}
-        values.yaml
+        values.gotmpl
         {{- end -}}'
       - '{{- if index .Release.Labels "element" -}}
         {{ requiredEnv "KASSIO_PATH" }}/components/{{ .Release.Labels.component }}/values-{{ .Release.Labels.element }}-{{ .Environment.Name }}.yaml

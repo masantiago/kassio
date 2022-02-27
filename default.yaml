@@ -4,6 +4,7 @@ components:
     enabled: true
   db:
     enabled: false
+    platform: intel # intel|arm
     frontend:
       enabled: true
     metrics:

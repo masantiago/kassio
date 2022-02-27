@@ -1,0 +1,20 @@
+---
+architecture: standalone
+auth:
+  database: home-assistant
+  username: home-assistant  
+primary:
+  persistence:
+    enabled: true    
+    storageClass: local-path        
+  nodeSelector:
+    kassio/db: "true"
+{{- if eq .Values.components.db.platform "arm" -}}
+  podSecurityContext:
+    enabled: false
+  containerSecurityContext:
+    enabled: false
+image:
+  repository: arm64v8/mariadb
+  tag: 10.5.12
+{{- end -}}
