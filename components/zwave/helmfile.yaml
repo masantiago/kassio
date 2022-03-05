@@ -1,0 +1,16 @@
+bases:  
+  - ../bases/repos.yaml
+  - ../bases/environments.yaml
+
+{{ readFile "../bases/templates.yaml" }}
+
+commonLabels:
+  component: zwave
+
+releases:
+  - name: kassio-zwave
+    <<: *release
+    chart: k8s-at-home/zwavejs2mqtt
+    version: 5.2.0
+    needs:
+      - kassio/kassio-broker

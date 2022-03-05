@@ -1,0 +1,29 @@
+---
+image: 
+  repository: zwavejs/zwavejs2mqtt
+  tag: 5.0.2  
+ingress:
+  main:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: traefik
+service:
+  main:
+    ports:
+      websocket:
+        enabled: true # Needed for integration with Home Assistant
+securityContext:
+  privileged: true
+persistence:
+  config:
+    enabled: true
+    type: pvc
+    storageClass: local-path
+    accessMode: ReadWriteOnce
+    mountPath: /usr/src/app/store
+  usb:
+    enabled: true
+    type: hostPath    
+    mountPath: /dev/ttyACM0
+nodeSelector:
+  kassio/zwave: "true"
