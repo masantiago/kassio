@@ -1,0 +1,12 @@
+---
+persistence:
+  config:
+    size: 2Gi
+  usb:
+    hostPath: /dev/ttyACM0  
+ingress:
+  main:
+    hosts:
+      - host: zwave.your-kassio.com
+        paths:
+          - path: /
