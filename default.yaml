@@ -32,4 +32,6 @@ components:
   vault:
     enabled: false    
   zigbee:
-    enabled: true    
+    enabled: false
+  zwave:
+    enabled: false
