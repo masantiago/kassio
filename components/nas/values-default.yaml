@@ -1,0 +1,4 @@
+---
+nfs:
+  server: 0.0.0.0
+  path: /kassio

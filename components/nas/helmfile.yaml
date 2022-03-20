@@ -1,0 +1,14 @@
+bases:  
+  - ../bases/repos.yaml
+  - ../bases/environments.yaml
+
+{{ readFile "../bases/templates.yaml" }}
+
+commonLabels:
+  component: nas
+
+releases:
+  - name: kassio-nas
+    <<: *release
+    chart: kubernetes-sigs/nfs-subdir-external-provisioner
+    version: 4.0.16

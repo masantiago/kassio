@@ -10,3 +10,5 @@ repositories:
     url: https://grafana.github.io/helm-charts
   - name: bitnami
     url: https://charts.bitnami.com/bitnami
+  - name: kubernetes-sigs
+    url: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner

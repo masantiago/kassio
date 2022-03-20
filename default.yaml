@@ -21,6 +21,9 @@ components:
       enabled: true
     logs:
       enabled: true
+  nas:
+    enabled: false
+    platform: intel # intel|arm    
   nvr:
     enabled: false
     coral:

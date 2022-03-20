@@ -1,0 +1,13 @@
+---
+image:
+{{- if eq .Values.components.nas.platform "intel" }}
+  repository: k8s.gcr.io/sig-storage/nfs-subdir-external-provisioner
+  tag: v4.0.2
+{{- else }}
+  repository: gcr.io/k8s-staging-sig-storage/nfs-subdir-external-provisioner
+  tag: arm64-linux-canary
+{{- end }}
+storageClass:
+  name: nfs
+nodeSelector:
+  kassio/nas: "true"
