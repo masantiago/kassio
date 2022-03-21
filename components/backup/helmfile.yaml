@@ -1,0 +1,17 @@
+bases:  
+  - ../bases/repos.yaml
+  - ../bases/environments.yaml
+
+{{ readFile "../bases/templates.yaml" }}
+
+commonLabels:
+  component: backup
+
+releases:
+
+  - name: kassio-backup-s3
+    <<: *release
+    chart: minio/minio
+    version: 3.6.2
+    labels:
+      element: s3

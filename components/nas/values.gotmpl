@@ -9,5 +9,9 @@ image:
 {{- end }}
 storageClass:
   name: nfs
+nfs:
+  mountOptions:
+    - nolock
+    - nfsvers=3
 nodeSelector:
   kassio/nas: "true"

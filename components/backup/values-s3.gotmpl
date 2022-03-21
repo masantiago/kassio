@@ -1,0 +1,17 @@
+---
+image:
+  repository: quay.io/minio/minio
+  tag: RELEASE.2022-03-17T06-34-49Z
+buckets:
+  - name: kassio-backup
+    policy: public
+persistence:
+  enabled: true
+  accessMode: ReadWriteOnce
+mode: standalone
+replicas: 1
+resources:
+  requests:
+    memory: 1Gi
+nodeSelector:
+  kassio/backup: "true"

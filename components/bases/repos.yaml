@@ -12,3 +12,5 @@ repositories:
     url: https://charts.bitnami.com/bitnami
   - name: kubernetes-sigs
     url: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
+  - name: minio
+    url: https://charts.min.io/

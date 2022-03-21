@@ -1,5 +1,9 @@
 ---
 components: 
+  backup:
+    enabled: false
+    s3:
+      enabled: true
   broker:
     enabled: true
   db:
