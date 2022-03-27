@@ -13,5 +13,8 @@ replicas: 1
 resources:
   requests:
     memory: 1Gi
+service:
+  type: NodePort
+  nodePort: 32001
 nodeSelector:
   kassio/backup: "true"

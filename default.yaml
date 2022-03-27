@@ -4,6 +4,8 @@ components:
     enabled: false
     s3:
       enabled: true
+    tool:
+      enabled: true
   broker:
     enabled: true
   db:

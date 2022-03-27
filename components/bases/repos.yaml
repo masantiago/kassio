@@ -14,3 +14,5 @@ repositories:
     url: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
   - name: minio
     url: https://charts.min.io/
+  - name: vmware-tanzu
+    url: https://vmware-tanzu.github.io/helm-charts
