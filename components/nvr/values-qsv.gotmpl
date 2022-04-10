@@ -17,3 +17,5 @@ persistence:
     mountPath: /dev/shm  
 nodeSelector:
   kassio/nvr-qsv: "true"
+podAnnotations:
+  backup.velero.io/backup-volumes-excludes: cache

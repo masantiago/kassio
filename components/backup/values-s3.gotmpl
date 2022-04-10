@@ -1,7 +1,7 @@
 ---
 image:
   repository: quay.io/minio/minio
-  tag: RELEASE.2022-03-17T06-34-49Z
+  tag: RELEASE.2022-04-01T03-41-39Z
 buckets:
   - name: kassio-backup
     policy: public
@@ -18,3 +18,5 @@ service:
   nodePort: 32001
 nodeSelector:
   kassio/backup: "true"
+podAnnotations:
+  backup.velero.io/backup-volumes-excludes: export

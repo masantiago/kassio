@@ -1,4 +1,5 @@
 ---
 server:
   dataStorage:
+    storageClass: local-path
     size: 5Gi

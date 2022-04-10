@@ -5,8 +5,7 @@ auth:
   username: home-assistant  
 primary:
   persistence:
-    enabled: true    
-    storageClass: local-path        
+    enabled: true
   nodeSelector:
     kassio/db: "true"
 {{- if eq .Values.components.db.platform "arm" -}}

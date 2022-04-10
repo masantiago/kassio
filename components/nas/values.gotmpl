@@ -13,5 +13,8 @@ nfs:
   mountOptions:
     - nolock
     - nfsvers=3
+  volumeName: nfs-volume
 nodeSelector:
   kassio/nas: "true"
+podAnnotations:
+  backup.velero.io/backup-volumes-excludes: nfs-volume

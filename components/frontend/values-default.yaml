@@ -7,4 +7,5 @@ ingress:
           - path: /
 persistence:
   config:
+    storageClass: local-path
     size: 5Gi

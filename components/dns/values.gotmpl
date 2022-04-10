@@ -12,14 +12,12 @@ ingress:
 persistence:
   config:
     enabled: true
-    type: pvc
-    storageClass: local-path
+    type: pvc    
     accessMode: ReadWriteOnce
     mountPath: /opt/adguardhome/conf
   data:
     enabled: true
-    type: pvc
-    storageClass: local-path
+    type: pvc    
     accessMode: ReadWriteOnce
     mountPath: /opt/adguardhome/work
 nodeSelector:

@@ -3,6 +3,7 @@ persistence:
   usb:
     hostPath: /dev/ttyACM0
   data:
+    storageClass: local-path
     size: 2Gi
 config:
   advanced:
