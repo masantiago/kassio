@@ -9,11 +9,9 @@ commonLabels:
 
 releases:
 
-  - name: kassio-backup-tool
+  - name: kassio-backup
     <<: *release
     chart: vmware-tanzu/velero
-    version: 2.29.1
-    labels:
-      element: tool
+    version: 2.29.1    
     needs:
-      - kassio/kassio-backup-s3
+      - kassio/kassio-storage-s3

@@ -2,8 +2,6 @@
 components: 
   backup:
     enabled: false    
-    tool:
-      enabled: true
   broker:
     enabled: true
   db:
