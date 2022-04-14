@@ -1,0 +1,24 @@
+bases:  
+  - ../bases/repos.yaml
+  - ../bases/environments.yaml
+
+{{ readFile "../bases/templates.yaml" }}
+
+commonLabels:
+  component: storage
+
+releases:
+
+  - name: kassio-storage-nas
+    <<: *release
+    chart: kubernetes-sigs/nfs-subdir-external-provisioner
+    version: 4.0.16
+    labels:
+      element: nas
+
+  - name: kassio-storage-s3
+    <<: *release
+    chart: minio/minio
+    version: 3.6.2
+    labels:
+      element: s3

@@ -17,6 +17,6 @@ service:
   type: NodePort
   nodePort: 32001
 nodeSelector:
-  kassio/backup: "true"
+  kassio/storage: "true"
 podAnnotations:
   backup.velero.io/backup-volumes-excludes: export

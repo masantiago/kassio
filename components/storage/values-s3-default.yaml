@@ -1,4 +1,4 @@
 ---
 persistence:
-  storageClass: nfs
+  storageClass: nas
   size: 100Gi

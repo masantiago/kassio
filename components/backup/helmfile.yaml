@@ -9,13 +9,6 @@ commonLabels:
 
 releases:
 
-  - name: kassio-backup-s3
-    <<: *release
-    chart: minio/minio
-    version: 3.6.2
-    labels:
-      element: s3
-
   - name: kassio-backup-tool
     <<: *release
     chart: vmware-tanzu/velero
