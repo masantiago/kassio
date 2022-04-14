@@ -22,3 +22,5 @@ releases:
     version: 3.6.2
     labels:
       element: s3
+    needs:
+      - kassio/kassio-storage-nas
