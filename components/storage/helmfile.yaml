@@ -11,10 +11,17 @@ releases:
 
   - name: kassio-storage-nas
     <<: *release
-    chart: kubernetes-sigs/nfs-subdir-external-provisioner
+    chart: kubernetes-sigs-nfs-external/nfs-subdir-external-provisioner
     version: 4.0.16
     labels:
       element: nas
+
+  - name: kassio-storage-nfs
+    <<: *release
+    chart: kubernetes-sigs-nfs-internal/nfs-server-provisioner
+    version: 1.4.0
+    labels:
+      element: nfs
 
   - name: kassio-storage-s3
     <<: *release

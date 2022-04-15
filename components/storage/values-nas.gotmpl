@@ -9,6 +9,7 @@ image:
 {{- end }}
 storageClass:
   name: nas
+  accessModes: ReadWriteOnce
 nfs:
   mountOptions:
     - nolock

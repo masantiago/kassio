@@ -28,6 +28,8 @@ components:
     platform: intel # intel|arm 
     nas:
       enabled: false
+    nfs:
+      enabled: false
     s3:
       enabled: false   
   nvr:
