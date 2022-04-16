@@ -12,3 +12,5 @@ persistence:
   accessMode: ReadWriteOnce
 nodeSelector:
   kassio/storage: "true"
+podAnnotations: # Must be included manually because it is not available in helm
+  backup.velero.io/backup-volumes-excludes: data

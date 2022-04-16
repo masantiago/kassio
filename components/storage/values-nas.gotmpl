@@ -12,9 +12,9 @@ storageClass:
   accessModes: ReadWriteOnce
 nfs:
   mountOptions:
-    - nolock
-    - nfsvers=3
+    - nfsvers=4
   volumeName: nfs-volume
+  reclaimPolicy: Delete
 nodeSelector:
   kassio/storage: "true"
 podAnnotations:
