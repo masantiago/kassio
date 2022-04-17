@@ -8,8 +8,7 @@ server:
   service:
     type: NodePort
     nodePort: 32000
-  dataStorage:
-    storageClass: local-path
+  dataStorage:    
     mountPath: /vault/data
   standalone:
     enabled: true

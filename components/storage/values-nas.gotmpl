@@ -1,0 +1,21 @@
+---
+image:
+{{- if eq .Values.components.storage.platform "intel" }}
+  repository: k8s.gcr.io/sig-storage/nfs-subdir-external-provisioner
+  tag: v4.0.2
+{{- else }}
+  repository: gcr.io/k8s-staging-sig-storage/nfs-subdir-external-provisioner
+  tag: arm64-linux-canary
+{{- end }}
+storageClass:
+  name: nas
+  accessModes: ReadWriteOnce
+nfs:
+  mountOptions:
+    - nfsvers=4
+  volumeName: nfs-volume
+  reclaimPolicy: Delete
+nodeSelector:
+  kassio/storage: "true"
+podAnnotations:
+  backup.velero.io/backup-volumes-excludes: nfs-volume

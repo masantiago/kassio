@@ -1,0 +1,16 @@
+---
+image:
+  repository: k8s.gcr.io/sig-storage/nfs-provisioner
+  tag: v3.0.0
+storageClass:
+  name: nfs-path
+  mountOptions:
+    - nfsvers=4
+persistence:
+  enabled: true
+  storageClass: local-path
+  accessMode: ReadWriteOnce
+nodeSelector:
+  kassio/storage: "true"
+podAnnotations: # Must be included manually because it is not available in helm
+  backup.velero.io/backup-volumes-excludes: data

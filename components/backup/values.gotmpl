@@ -1,0 +1,32 @@
+---
+image:
+  repository: velero/velero
+  tag: v1.8.1
+initContainers:
+  - name: velero-plugin-for-aws
+    image: velero/velero-plugin-for-aws:v1.4.1
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+      - mountPath: /target
+        name: plugins
+configuration:
+  provider: aws
+  backupStorageLocation:
+    name: kassio-backup-storage
+    default: true
+    bucket: kassio-backup
+    config:
+      region: minio
+      s3ForcePathStyle: "true"
+      s3Url: http://kassio-storage-s3:9000
+  defaultVolumesToRestic: true
+snapshotsEnabled: false
+deployRestic: true
+schedules:
+  daily:
+    disabled: false
+    template:
+      includedNamespaces:
+        - kassio
+nodeSelector:
+  kassio/backup: "true"

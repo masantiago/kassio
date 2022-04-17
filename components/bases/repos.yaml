@@ -10,3 +10,11 @@ repositories:
     url: https://grafana.github.io/helm-charts
   - name: bitnami
     url: https://charts.bitnami.com/bitnami
+  - name: kubernetes-sigs-nfs-external
+    url: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
+  - name: kubernetes-sigs-nfs-internal
+    url: https://kubernetes-sigs.github.io/nfs-ganesha-server-and-external-provisioner
+  - name: minio
+    url: https://charts.min.io/
+  - name: vmware-tanzu
+    url: https://vmware-tanzu.github.io/helm-charts

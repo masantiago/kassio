@@ -1,0 +1,17 @@
+bases:  
+  - ../bases/repos.yaml
+  - ../bases/environments.yaml
+
+{{ readFile "../bases/templates.yaml" }}
+
+commonLabels:
+  component: backup
+
+releases:
+
+  - name: kassio-backup
+    <<: *release
+    chart: vmware-tanzu/velero
+    version: 2.29.1    
+    needs:
+      - kassio/kassio-storage-s3

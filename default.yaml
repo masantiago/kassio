@@ -1,5 +1,7 @@
 ---
 components: 
+  backup:
+    enabled: false    
   broker:
     enabled: true
   db:
@@ -21,6 +23,15 @@ components:
       enabled: true
     logs:
       enabled: true
+  storage:
+    enabled: false
+    platform: intel # intel|arm 
+    nas:
+      enabled: false
+    nfs:
+      enabled: false
+    s3:
+      enabled: false   
   nvr:
     enabled: false
     coral:

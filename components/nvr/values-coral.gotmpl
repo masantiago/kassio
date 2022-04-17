@@ -21,3 +21,5 @@ persistence:
     mountPath: /dev/shm  
 nodeSelector:
   kassio/nvr-coral: "true"
+podAnnotations:
+  backup.velero.io/backup-volumes-excludes: cache

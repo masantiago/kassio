@@ -1,0 +1,22 @@
+---
+image:
+  repository: quay.io/minio/minio
+  tag: RELEASE.2022-04-01T03-41-39Z
+buckets:
+  - name: kassio-backup
+    policy: public
+persistence:
+  enabled: true
+  accessMode: ReadWriteOnce
+mode: standalone
+replicas: 1
+resources:
+  requests:
+    memory: 1Gi
+service:
+  type: NodePort
+  nodePort: 32001
+nodeSelector:
+  kassio/storage: "true"
+podAnnotations:
+  backup.velero.io/backup-volumes-excludes: export

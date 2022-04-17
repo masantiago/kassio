@@ -1,0 +1,11 @@
+---
+configuration:
+  backupStorageLocation:
+    config:
+      publicUrl: http://kassio-node:32001
+  defaultResticPruneFrequency: 168h
+schedules:
+  daily:
+    schedule: "0 0 * * *" # Daily at 00:00
+    template:
+      ttl: "336h"

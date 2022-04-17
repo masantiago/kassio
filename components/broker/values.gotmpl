@@ -14,14 +14,12 @@ service:
 persistence:
   data:
     enabled: true
-    type: pvc      
-    storageClass: local-path
+    type: pvc
     accessMode: ReadWriteOnce
     mountPath: /mosquitto/data
   configinc:
     enabled: true
-    type: pvc    
-    storageClass: local-path
+    type: pvc
     accessMode: ReadWriteOnce
     mountPath: /mosquitto/configinc
   auth:
