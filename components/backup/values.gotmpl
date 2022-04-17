@@ -22,5 +22,11 @@ configuration:
   defaultVolumesToRestic: true
 snapshotsEnabled: false
 deployRestic: true
+schedules:
+  daily:
+    disabled: false
+    template:
+      includedNamespaces:
+        - kassio
 nodeSelector:
   kassio/backup: "true"
