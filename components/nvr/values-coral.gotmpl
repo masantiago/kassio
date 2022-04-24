@@ -1,7 +1,7 @@
 ---
 image:
   repository: blakeblackshear/frigate
-  tag: 0.9.4-aarch64
+  tag: 0.10.1-aarch64
 service:
   main:
     ports:
@@ -10,6 +10,11 @@ service:
 securityContext:
   privileged: true
 persistence:
+  data:
+    enabled: true
+    type: pvc
+    accessMode: ReadWriteOnce    
+    mountPath: /data
   usb:
     enabled: true
     type: hostPath
