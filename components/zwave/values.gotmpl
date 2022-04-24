@@ -17,8 +17,7 @@ securityContext:
 persistence:
   config:
     enabled: true
-    type: pvc
-    storageClass: local-path
+    type: pvc    
     accessMode: ReadWriteOnce
     mountPath: /usr/src/app/store
   usb:

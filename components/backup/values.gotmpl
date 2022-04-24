@@ -30,3 +30,6 @@ schedules:
         - kassio
 nodeSelector:
   kassio/backup: "true"
+{{- if eq .Values.components.db.platform "arm" }}
+upgradeCRDs: false # Otherwise, it fails with arm
+{{- end }}

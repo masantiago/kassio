@@ -9,7 +9,7 @@ persistence:
 influxdb:
   nodeSelector:
     kassio/db: "true"
-{{- if eq .Values.components.db.platform "arm" -}}
+{{- if eq .Values.components.db.platform "arm" }}
   securityContext:
     enabled: false
   extraEnvVars:

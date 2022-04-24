@@ -8,7 +8,7 @@ primary:
     enabled: true
   nodeSelector:
     kassio/db: "true"
-{{- if eq .Values.components.db.platform "arm" -}}
+{{- if eq .Values.components.db.platform "arm" }}
   podSecurityContext:
     enabled: false
   containerSecurityContext:
