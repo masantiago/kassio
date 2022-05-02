@@ -17,6 +17,7 @@ components:
   engine:
     enabled: true  
   frontend:
+    platform: intel # intel|arm
     enabled: true
   monitoring:
     enabled: true

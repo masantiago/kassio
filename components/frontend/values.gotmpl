@@ -1,6 +1,10 @@
 ---
 image:
+{{- if eq .Values.components.frontend.platform "arm" }}
   repository: homeassistant/raspberrypi4-homeassistant
+{{- else }}
+  repository: homeassistant/home-assistant
+{{- end }}
   tag: 2021.11.3
 hostNetwork: true
 dnsPolicy: ClusterFirstWithHostNet
