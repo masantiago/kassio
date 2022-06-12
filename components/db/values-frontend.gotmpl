@@ -16,4 +16,8 @@ primary:
 image:
   repository: arm64v8/mariadb
   tag: 10.5.12
+{{- else }}
+image:
+  repository: bitnami/mariadb
+  tag: 10.6.8-debian-11-r3
 {{- end -}}

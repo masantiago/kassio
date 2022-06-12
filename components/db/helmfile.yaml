@@ -12,7 +12,7 @@ releases:
   - name: kassio-db-frontend
     <<: *release
     chart: bitnami/mariadb
-    version: 9.7.0
+    version: 11.0.13
     labels:
       element: frontend
 
