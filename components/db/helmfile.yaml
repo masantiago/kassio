@@ -19,6 +19,6 @@ releases:
   - name: kassio-db-metrics
     <<: *release
     chart: bitnami/influxdb
-    version: 1.1.9
+    version: 5.3.4
     labels:
       element: metrics
