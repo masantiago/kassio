@@ -1,7 +1,7 @@
 ---
 image:
   repository: blakeblackshear/frigate
-  tag: 0.9.4-amd64
+  tag: 0.10.1-amd64
 service:
   main:
     ports:
@@ -10,10 +10,15 @@ service:
 securityContext:
   privileged: true
 persistence:
+  data:
+    enabled: true
+    type: pvc
+    accessMode: ReadWriteOnce    
+    mountPath: /data
   cache:
     enabled: true
     type: emptyDir
-    medium: Memory    
+    medium: Memory
     mountPath: /dev/shm  
 nodeSelector:
   kassio/nvr-qsv: "true"

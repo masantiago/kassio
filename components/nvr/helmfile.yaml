@@ -21,7 +21,7 @@ releases:
   - name: kassio-nvr-qsv
     <<: *release
     chart: k8s-at-home/frigate
-    version: 6.1.1
+    version: 8.0.0
     labels:
       element: qsv
     needs:
