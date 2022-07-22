@@ -1,5 +1,9 @@
 ---
 components: 
+  ai:
+    enabled: false
+    stack:
+      enabled: true
   backup:
     platform: intel # intel|arm
     enabled: false    
