@@ -1,0 +1,25 @@
+---
+image:
+  repository: deepquestai/deepstack
+  tag: cpu-2022.01.1
+env:
+  # -- Enable scene recognition
+  VISION-SCENE: "True"
+  # -- Enable face detection
+  VISION-FACE: "True"
+  # -- Enable object detection
+  VISION-DETECTION: "True"
+ui:
+  image:
+    repository: robmarkcole/deepstack-ui
+    tag: latest
+persistence:
+  data:
+    enabled: true
+    type: pvc
+    accessMode: ReadWriteOnce    
+    mountPath: /datastore
+nodeSelector:
+  kassio/ai-stack: "true"
+podAnnotations:
+  backup.velero.io/backup-volumes-excludes: data

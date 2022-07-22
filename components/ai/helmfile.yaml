@@ -1,0 +1,17 @@
+bases:  
+  - ../bases/repos.yaml
+  - ../bases/environments.yaml
+
+{{ readFile "../bases/templates.yaml" }}
+
+commonLabels:
+  component: ai
+
+releases:
+
+  - name: kassio-ai-stack
+    <<: *release
+    chart: k8s-at-home/deepstack
+    version: 1.4.2
+    labels:
+      element: stack
