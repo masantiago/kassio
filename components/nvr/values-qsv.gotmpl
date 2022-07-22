@@ -19,7 +19,12 @@ persistence:
     enabled: true
     type: emptyDir
     medium: Memory
-    mountPath: /dev/shm  
+    mountPath: /dev/shm
+  media:
+    enabled: true
+    type: pvc
+    accessMode: ReadWriteOnce
+    mountPath: /media
 nodeSelector:
   kassio/nvr-qsv: "true"
 podAnnotations:
