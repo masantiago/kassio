@@ -22,3 +22,10 @@ releases:
     version: 2.2.2
     labels:
       element: proxy
+
+  - name: kassio-ai-proxy-qsv
+    <<: *release
+    chart: k8s-at-home/double-take
+    version: 2.2.2
+    labels:
+      element: proxy-qsv

@@ -6,6 +6,8 @@ components:
       enabled: true
     proxy:
       enabled: true
+    proxy-qsv:
+      enabled: true
   backup:
     platform: intel # intel|arm
     enabled: false    
