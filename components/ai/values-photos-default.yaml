@@ -1,0 +1,15 @@
+---
+ingress:
+  main:
+    enabled: true
+    hosts:
+      - host: photos.your-kassio.com
+        paths:
+          - path: /
+persistence:
+  config:
+    storageClass: local-path
+    size: 5Gi
+  originals:
+    storageClass: local-path
+    size: 5Gi

@@ -1,0 +1,38 @@
+---
+image:
+  repository: photoprism/photoprism
+  tag: 220629-jammy
+env:
+  # -- Photoprism storage path
+  PHOTOPRISM_STORAGE_PATH: /photoprism/storage
+  # -- Photoprism originals path
+  PHOTOPRISM_ORIGINALS_PATH: /photoprism/originals
+  # -- Database driver (sqlite, mysql)
+  PHOTOPRISM_DATABASE_DRIVER: mysql
+  # -- Database host incl. port
+  PHOTOPRISM_DATABASE_SERVER: kassio-db-frontend:3306
+  # -- Database schema name
+  PHOTOPRISM_DATABASE_NAME: photoprism
+  # -- Database user name
+  PHOTOPRISM_DATABASE_USER: kassio  
+  # -- Disable authentication / password protection
+  PHOTOPRISM_PUBLIC: "false"
+ingress:
+  main:
+    enabled: true
+persistence:
+  config:
+    enabled: true
+    type: pvc
+    accessMode: ReadWriteOnce    
+    mountPath: /photoprism/storage
+  
+  originals:
+    enabled: true
+    type: pvc
+    accessMode: ReadWriteOnce    
+    mountPath: /photoprism/originals
+nodeSelector:
+  kassio/ai-photos: "true"
+podAnnotations:
+  backup.velero.io/backup-volumes-excludes: originals

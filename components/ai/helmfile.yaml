@@ -29,3 +29,10 @@ releases:
     version: 2.2.2
     labels:
       element: proxy-qsv
+
+  - name: kassio-ai-photos
+    <<: *release
+    chart: k8s-at-home/photoprism
+    version: 7.0.0
+    labels:
+      element: photos
