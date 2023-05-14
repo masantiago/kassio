@@ -12,7 +12,7 @@ releases:
   - name: kassio-nvr
     <<: *release
     chart: k8s-at-home/frigate
-    version: 8.0.0
+    version: 8.2.2
     labels:
       element: coral
     needs:
@@ -21,7 +21,7 @@ releases:
   - name: kassio-nvr-qsv
     <<: *release
     chart: k8s-at-home/frigate
-    version: 8.0.0
+    version: 8.2.2
     labels:
       element: qsv
     needs:
