@@ -1,0 +1,16 @@
+---
+args:
+  - "--user-profiles"
+  - "/profiles"
+  - "--profile"
+  - "en"
+ingress:
+  main:
+    hosts:
+      - host: voice.your-kassio.com
+        paths:
+          - path: /
+persistence:
+  config:
+    storageClass: local-path
+    size: 1Gi

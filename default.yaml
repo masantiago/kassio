@@ -51,7 +51,9 @@ components:
   sai:
     enabled: false 
   vault:
-    enabled: false    
+    enabled: false 
+  voice:
+    enabled: false   
   zigbee:
     enabled: false
   zwave:

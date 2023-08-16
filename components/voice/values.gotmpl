@@ -1,0 +1,17 @@
+---
+image:
+  repository: rhasspy/rhasspy
+  tag: 2.5.11
+ingress:
+  main:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: traefik
+persistence:
+  config:
+    enabled: true
+    type: pvc    
+    accessMode: ReadWriteOnce
+    mountPath: /profiles  
+nodeSelector:
+  kassio/voice: "true"

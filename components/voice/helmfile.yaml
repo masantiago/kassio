@@ -1,0 +1,14 @@
+bases:  
+  - ../bases/repos.yaml
+  - ../bases/environments.yaml
+
+{{ readFile "../bases/templates.yaml" }}
+
+commonLabels:
+  component: voice
+
+releases:
+  - name: kassio-voice
+    <<: *release
+    chart: k8s-at-home/rhasspy
+    version: 1.1.2
