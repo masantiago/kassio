@@ -1,0 +1,8 @@
+---
+args:
+  - "--voice"
+  - "es_ES-sharvard-medium"
+persistence:
+  config:
+    storageClass: local-path
+    size: 1Gi

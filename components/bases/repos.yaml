@@ -18,3 +18,5 @@ repositories:
     url: https://charts.min.io/
   - name: vmware-tanzu
     url: https://vmware-tanzu.github.io/helm-charts
+  - name: kassio
+    url: https://masantiago.github.io/kassio-repository
