@@ -12,13 +12,13 @@ releases:
   - name: kassio-db-frontend
     <<: *release
     chart: bitnami/mariadb
-    version: 9.7.0
+    version: 11.0.13
     labels:
       element: frontend
 
   - name: kassio-db-metrics
     <<: *release
     chart: bitnami/influxdb
-    version: 1.1.9
+    version: 5.3.4
     labels:
       element: metrics

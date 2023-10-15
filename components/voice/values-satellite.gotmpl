@@ -1,19 +1,17 @@
 ---
 image:
-  repository: nodered/node-red
-  tag: 3.0.2  
-hostNetwork: true
-dnsPolicy: ClusterFirstWithHostNet
+  repository: rhasspy/rhasspy
+  tag: 2.5.11
 ingress:
   main:
     enabled: true
     annotations:
       kubernetes.io/ingress.class: traefik
 persistence:
-  data:
+  config:
     enabled: true
-    type: pvc
+    type: pvc    
     accessMode: ReadWriteOnce
-    mountPath: /data
+    mountPath: /profiles  
 nodeSelector:
-  kassio/engine: "true"
+  kassio/voice: "true"

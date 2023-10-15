@@ -1,21 +1,34 @@
 ---
 image:
-  repository: blakeblackshear/frigate
-  tag: 0.9.4-amd64
+  repository: ghcr.io/blakeblackshear/frigate
+  tag: 0.12.0
 service:
   main:
     ports:
-      rtmp:
+      rtsp:
         enabled: true
+        port: 8554
+        protocol: TCP
+        targetPort: 8554
 securityContext:
   privileged: true
 persistence:
+  data:
+    enabled: true
+    type: pvc
+    accessMode: ReadWriteOnce    
+    mountPath: /data
   cache:
     enabled: true
     type: emptyDir
-    medium: Memory    
-    mountPath: /dev/shm  
+    medium: Memory
+    mountPath: /dev/shm
+  media:
+    enabled: true
+    type: pvc
+    accessMode: ReadWriteOnce
+    mountPath: /media
 nodeSelector:
   kassio/nvr-qsv: "true"
 podAnnotations:
-  backup.velero.io/backup-volumes-excludes: cache
+  backup.velero.io/backup-volumes-excludes: cache,media

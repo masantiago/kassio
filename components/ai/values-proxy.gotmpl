@@ -1,0 +1,40 @@
+---
+image:
+  repository: jakowenko/double-take
+  tag: 1.12.1
+persistence:
+  data:
+    enabled: true
+    type: pvc
+    accessMode: ReadWriteOnce    
+    mountPath: /.storage
+config:
+  auth: true
+  mqtt:
+    host: kassio-broker
+    username: home-assistant
+    topics:
+      frigate: home-assistant/nvr/events
+      homeassistant: home-assistant
+      matches: home-assistant/nvr/proxy/matches
+      cameras: home-assistant/nvr/proxy/cameras  
+  frigate:
+    url: http://kassio-nvr:5000
+  cameras:    
+  detectors:
+    compreface:
+      enabled: false
+    deepstack:
+      enabled: true
+      url: http://kassio-ai-stack:5000
+    facebox:
+      enabled: false
+  time:
+    timezone: Europe/Madrid
+  notify:
+    gotify:
+      enabled: false
+nodeSelector:
+  kassio/ai-proxy: "true"
+podAnnotations:
+  backup.velero.io/backup-volumes-excludes: data

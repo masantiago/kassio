@@ -1,0 +1,12 @@
+---
+image:
+  repository: rhasspy/wyoming-piper
+  tag: 1.2.0
+persistence:
+  config:
+    enabled: true
+    type: pvc    
+    accessMode: ReadWriteOnce
+    mountPath: /data  
+nodeSelector:
+  kassio/voice: "true"

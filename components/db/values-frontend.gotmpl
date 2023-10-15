@@ -1,8 +1,8 @@
 ---
 architecture: standalone
 auth:
-  database: home-assistant
-  username: home-assistant  
+  database: kassio-db
+  username: kassio
 primary:
   persistence:
     enabled: true
@@ -16,4 +16,8 @@ primary:
 image:
   repository: arm64v8/mariadb
   tag: 10.5.12
+{{- else }}
+image:
+  repository: bitnami/mariadb
+  tag: 10.5.12-debian-10-r68 # Version 10.6 have an issue when starting from scratch. Waiting for newer versions
 {{- end -}}

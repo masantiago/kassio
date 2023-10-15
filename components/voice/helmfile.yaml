@@ -1,0 +1,31 @@
+bases:  
+  - ../bases/repos.yaml
+  - ../bases/environments.yaml
+
+{{ readFile "../bases/templates.yaml" }}
+
+commonLabels:
+  component: voice
+
+releases:
+
+  - name: kassio-voice-satellite
+    <<: *release
+    chart: k8s-at-home/rhasspy
+    version: 1.1.2
+    labels:
+      element: satellite
+
+  - name: kassio-voice-tts
+    <<: *release
+    chart: kassio/piper
+    version: 1.0.0
+    labels:
+      element: tts
+
+  - name: kassio-voice-asr
+    <<: *release
+    chart: kassio/whisper
+    version: 1.0.0
+    labels:
+      element: asr

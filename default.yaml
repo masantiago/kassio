@@ -1,5 +1,13 @@
 ---
 components: 
+  ai:
+    enabled: false
+    stack:
+      enabled: true
+    proxy:
+      enabled: true
+    proxy-qsv:
+      enabled: true
   backup:
     platform: intel # intel|arm
     enabled: false    
@@ -43,7 +51,15 @@ components:
   sai:
     enabled: false 
   vault:
-    enabled: false    
+    enabled: false 
+  voice:
+    enabled: false
+    satellite:
+      enabled: false
+    tts:
+      enabled: false
+    asr:
+      enabled: false
   zigbee:
     enabled: false
   zwave:

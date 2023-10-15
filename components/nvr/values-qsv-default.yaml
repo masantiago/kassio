@@ -1,22 +1,32 @@
 ---
-config: |
-  mqtt:      
-    host: kassio-broker
-    topic_prefix: "home-assistant/frigate"
-    user: home-assistant
-    password: '{FRIGATE_RTSP_PASSWORD}'
-    client_id: frigate-qsv
-  ffmpeg:
-    hwaccel_args:
-      - -hwaccel
-      - vaapi
-      - -hwaccel_device
-      - /dev/dri/renderD128
-      - -hwaccel_output_format
-      - yuv420p
-  objects:
-    track:
-      - person
+configmap:
+  config:
+    enabled: true
+    data:      
+      config.yml: |
+        mqtt:      
+          host: kassio-broker
+          topic_prefix: "home-assistant/nvr"
+          user: home-assistant
+          password: '{FRIGATE_RTSP_PASSWORD}'
+          client_id: frigate-qsv
+        ffmpeg:
+          hwaccel_args:
+            - -hwaccel
+            - vaapi
+            - -hwaccel_device
+            - /dev/dri/renderD128
+            - -hwaccel_output_format
+            - yuv420p
+        objects:
+          track:
+            - person
 persistence:
+  data:
+    storageClass: local-path
+    size: 5Gi
   cache:
     sizeLimit: 1Gi # Memory/camera = (width * height * 3 + 270480)/1048576 = <shm size in mb>
+  media:
+    storageClass: local-path
+    size: 100Mi
