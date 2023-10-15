@@ -8,6 +8,6 @@ persistence:
 ingress:
   main:
     hosts:
-      - host: zwave.your-kassio.com
+      - host: zwave.kassio
         paths:
           - path: /

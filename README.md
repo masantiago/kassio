@@ -1,34 +1,53 @@
 # kassio
 
 ## Requirements
-* Install [Raspbian Buster Lite](https://www.raspberrypi.org/downloads/raspbian/) according to  instructions of [Allexis' blog](https://blog.alexellis.io/test-drive-k3s-on-raspberry-pi/) 
-* Expand the file system to make use of the entire capacity of the micro SD Card
-```console
-$ sudo raspi-config
-```
-* Ntp config
-```console
-$ sudo apt-get update && sudo apt-get install -y ntp ntpdate
-```
-Advanced Options -> Expand Filesystem
-* Install k3s using [k3sup](https://github.com/alexellis/k3sup)
-* Install tiller using [tiller-multiarch](https://github.com/jessestuart/tiller-multiarch)
+* kubectl
+* k3d
+* k9s
+* helm
+* helmfile
 
-## Installation
+## Basic installation
+### Cluster creation
+- k3d cluster made of one master, and no workers
+- External 8080 port to publish ingress
+- Shared volume (`~/storage-local-path`) in host linked to local storage of rancher
+
 ```console
-$ helm dependency update
-$ helm install --name mas-iot --namespace mas-iot .
+$ k3d cluster create kassio --port 8080:80@loadbalancer --volume ~/storage-local-path/:/var/lib/rancher/k3s/storage@all
 ```
 
-## Usage
-* Add as many user as MQTT devices in the file config/mosquitto-users by hashing afterwards in the mosquitto POD:
+### Default kassio intallation
+
+Clone repository and export location of configuration:
 ```console
-$ mosquitto_passwd -U mosquitto-users
+$ git clone -b feature/k3d_install git@github.com:masantiago/kassio.git 
+$ cd kassio
+$ export KASSIO_PATH=`pwd`
 ```
 
-k3sup install --ip $IP --user $USER --merge --local-path $HOME/.kube/config \
-  --context vallecas-iot \
-  --k3s-version v1.19.9+k3s1 \
-  --k3s-extra-args '--node-ip 192.168.1.201 --node-external-ip 10.8.0.1 --advertise-address 192.168.1.201'
+#### Only frontend ####
+Default configuration in `defaul.yaml` only frontend is activated.
 
-k3sup join --ip $AGENT_IP --server-ip $SERVER_IP --user $USER --k3s-version v1.19.9+k3s1 --k3s-extra-args '--node-ip 192.168.1.202 --node-external-ip 10.8.0.8'
+```console
+$ helmfile --interactive apply
+```
+Include in `/etc/hosts` the local domain for the component:
+```console
+127.0.0.1   frontend.kassio
+```
+
+Go to URL `http://frontend.kassio:8080`. By default, it will response 404 due to the proxy constraints of Home Assistant. It must be configured to by pass it. Go to the `~/storage-local-path` and navegate to the pvc folder created for the frontend. There must be a file called `configuration.yaml`. Add the following lines:
+
+```
+# Proxy
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+  - 127.0.0.1
+  - 192.168.1.0/24 # Replace with your local network CIDR
+  - 10.42.0.0/16
+  - 10.43.0.0/16
+```
+
+Restart the deployment `kassio-frontend` from k9s. Use `r` shortcut. Retry again the URL.

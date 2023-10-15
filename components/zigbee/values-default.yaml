@@ -12,6 +12,6 @@ config:
 ingress:
   main:
     hosts:
-      - host: zigbee.your-kassio.com
+      - host: zigbee.kassio
         paths:
           - path: /

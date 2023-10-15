@@ -3,7 +3,7 @@ ingress:
   main:
     enabled: true
     hosts:
-      - host: photos.your-kassio.com
+      - host: photos.kassio
         paths:
           - path: /
 persistence:

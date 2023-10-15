@@ -3,36 +3,36 @@ components:
   ai:
     enabled: false
     stack:
-      enabled: true
+      enabled: false
     proxy:
-      enabled: true
+      enabled: false
     proxy-qsv:
-      enabled: true
+      enabled: false
   backup:
     platform: intel # intel|arm
     enabled: false    
   broker:
-    enabled: true
+    enabled: false
   db:
     enabled: false
     platform: intel # intel|arm
     frontend:
-      enabled: true
+      enabled: false
     metrics:
-      enabled: true
+      enabled: false
   dns:
-    enabled: true  
+    enabled: false  
   engine:
-    enabled: true  
+    enabled: false  
   frontend:
     platform: intel # intel|arm
     enabled: true
   monitoring:
-    enabled: true
+    enabled: false
     metrics:
-      enabled: true
+      enabled: false
     logs:
-      enabled: true
+      enabled: false
   storage:
     enabled: false
     platform: intel # intel|arm 
@@ -45,9 +45,9 @@ components:
   nvr:
     enabled: false
     coral:
-      enabled: true
+      enabled: false
     qsv:
-      enabled: true 
+      enabled: false 
   sai:
     enabled: false 
   vault:

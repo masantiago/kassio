@@ -2,7 +2,7 @@
 ingress:
   main:
     hosts:
-      - host: dns.your-kassio.com
+      - host: dns.kassio
         paths:
           - path: /
 persistence:

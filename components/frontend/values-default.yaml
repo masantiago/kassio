@@ -2,10 +2,12 @@
 ingress:
   main:
     hosts:
-      - host: frontend.your-kassio.com
+      - host: frontend.kassio
         paths:
           - path: /
 persistence:
   config:
     storageClass: local-path
     size: 5Gi
+nodeSelector:
+  

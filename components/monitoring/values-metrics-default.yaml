@@ -2,7 +2,7 @@
 grafana:
   ingress:
     hosts:
-      - monitoring.your-kassio.com
+      - monitoring.kassio
 prometheus:
   prometheusSpec:
     retention: 15d
