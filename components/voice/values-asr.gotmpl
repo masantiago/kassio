@@ -1,0 +1,12 @@
+---
+image:
+  repository: rhasspy/wyoming-whisper
+  tag: 1.0.0
+persistence:
+  config:
+    enabled: true
+    type: pvc    
+    accessMode: ReadWriteOnce
+    mountPath: /data  
+nodeSelector:
+  kassio/voice: "true"

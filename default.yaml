@@ -58,6 +58,8 @@ components:
       enabled: false
     tts:
       enabled: false
+    asr:
+      enabled: false
   zigbee:
     enabled: false
   zwave:

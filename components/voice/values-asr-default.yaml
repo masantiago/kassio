@@ -1,0 +1,10 @@
+---
+args:
+  - "--model"
+  - "tiny-int8"
+  - "--language"
+  - "es"
+persistence:
+  config:
+    storageClass: local-path
+    size: 1Gi

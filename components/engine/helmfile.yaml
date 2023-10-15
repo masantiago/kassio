@@ -11,4 +11,4 @@ releases:
   - name: kassio-engine
     <<: *release
     chart: k8s-at-home/node-red
-    version: 9.0.1
+    version: 10.3.2

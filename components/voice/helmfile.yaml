@@ -22,3 +22,10 @@ releases:
     version: 1.0.0
     labels:
       element: tts
+
+  - name: kassio-voice-asr
+    <<: *release
+    chart: kassio/whisper
+    version: 1.0.0
+    labels:
+      element: asr
