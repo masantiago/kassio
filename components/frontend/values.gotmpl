@@ -15,5 +15,7 @@ persistence:
     type: pvc
     accessMode: ReadWriteOnce
     mountPath: /config
+podAnnotations:
+  backup.velero.io/backup-volumes: config
 nodeSelector:
   kassio/frontend: "true"

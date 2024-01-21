@@ -12,6 +12,6 @@ releases:
   - name: kassio-backup
     <<: *release
     chart: vmware-tanzu/velero
-    version: 2.29.1    
+    version: 5.2.2    
     needs:
       - kassio/kassio-storage-s3

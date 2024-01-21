@@ -1,9 +1,15 @@
 ---
-configuration:
+configuration:  
   backupStorageLocation:
-    config:
-      publicUrl: http://kassio-node:32001
-  defaultResticPruneFrequency: 168h
+    - name: kassio-backup-storage
+      default: true
+      provider: aws      
+      bucket: kassio-backup
+      config:
+        region: minio
+        s3ForcePathStyle: "true"
+        s3Url: http://kassio-storage-s3:9000
+        publicUrl: http://kassio-node:32001
 schedules:
   daily:
     schedule: "0 0 * * *" # Daily at 00:00
