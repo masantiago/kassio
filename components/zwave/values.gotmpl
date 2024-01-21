@@ -24,5 +24,7 @@ persistence:
     enabled: true
     type: hostPath    
     mountPath: /dev/ttyACM0
+podAnnotations:
+  backup.velero.io/backup-volumes: config
 nodeSelector:
   kassio/zwave: "true"
