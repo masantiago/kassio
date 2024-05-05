@@ -9,9 +9,11 @@ commonLabels:
 
 releases:
 
-  - name: kassio-backup
+  - name: kassio-backup-data
     <<: *release
     chart: vmware-tanzu/velero
-    version: 5.2.2    
-    needs:
-      - kassio/kassio-storage-s3
+    version: 5.2.2
+    labels:
+      element: data
+    #needs:
+    #  - kassio/kassio-storage-s3

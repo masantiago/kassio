@@ -21,6 +21,6 @@ schedules:
 cleanUpCRDs: false
 nodeSelector:
   kassio/backup: "true"
-{{- if eq .Values.components.db.platform "arm" }}
+{{- if eq .Values.components.backup.platform "arm" }}
 upgradeCRDs: false # Otherwise, it fails with arm
 {{- end }}

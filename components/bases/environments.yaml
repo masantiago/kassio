@@ -2,4 +2,13 @@
 environments:
   default:
     values:
-      - '{{ requiredEnv "KASSIO_PATH" }}/default.yaml' 
+      - '{{ requiredEnv "KASSIO_PATH" }}/default.yaml'
+  vallecas:
+    values:
+      - '{{ requiredEnv "KASSIO_PATH" }}/vallecas.yaml'
+  perales:
+    values:
+      - '{{ requiredEnv "KASSIO_PATH" }}/perales.yaml'
+  fuenla:
+    values:
+      - '{{ requiredEnv "KASSIO_PATH" }}/fuenla.yaml'

@@ -1,5 +1,5 @@
 ---
-components: 
+components:
   ai:
     enabled: false
     stack:
@@ -10,7 +10,9 @@ components:
       enabled: false
   backup:
     platform: intel # intel|arm
-    enabled: false    
+    enabled: false
+    data:
+      enabled: false
   broker:
     enabled: false
   db:
@@ -21,9 +23,9 @@ components:
     metrics:
       enabled: false
   dns:
-    enabled: false  
+    enabled: false
   engine:
-    enabled: false  
+    enabled: false
   frontend:
     platform: intel # intel|arm
     enabled: true
@@ -35,23 +37,23 @@ components:
       enabled: false
   storage:
     enabled: false
-    platform: intel # intel|arm 
+    platform: intel # intel|arm
     nas:
       enabled: false
     nfs:
       enabled: false
     s3:
-      enabled: false   
+      enabled: false
   nvr:
     enabled: false
     coral:
       enabled: false
     qsv:
-      enabled: false 
+      enabled: false
   sai:
-    enabled: false 
+    enabled: false
   vault:
-    enabled: false 
+    enabled: false
   voice:
     enabled: false
     satellite:
