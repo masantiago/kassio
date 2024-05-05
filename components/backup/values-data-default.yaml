@@ -1,9 +1,9 @@
 ---
-configuration:  
+configuration:
   backupStorageLocation:
     - name: kassio-backup-storage
       default: true
-      provider: aws      
+      provider: aws
       bucket: kassio-backup
       config:
         region: minio
