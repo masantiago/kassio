@@ -15,5 +15,3 @@ releases:
     version: 5.2.2
     labels:
       element: data
-    #needs:
-    #  - kassio/kassio-storage-s3

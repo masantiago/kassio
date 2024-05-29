@@ -20,6 +20,8 @@ components:
     platform: intel # intel|arm
     frontend:
       enabled: false
+    frontend-ui:
+      enabled: false
     metrics:
       enabled: false
   dns:

@@ -16,6 +16,13 @@ releases:
     labels:
       element: frontend
 
+  - name: kassio-db-frontend-ui
+    <<: *release
+    chart: truecharts/mysql-workbench
+    version: 10.0.11
+    labels:
+      element: frontend-ui
+
   - name: kassio-db-metrics
     <<: *release
     chart: bitnami/influxdb

@@ -8,6 +8,8 @@ primary:
     enabled: true
   nodeSelector:
     kassio/db: "true"
+  podAnnotations:
+    backup.velero.io/backup-volumes: data
 {{- if eq .Values.components.db.platform "arm" }}
   podSecurityContext:
     enabled: false

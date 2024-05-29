@@ -20,3 +20,6 @@ repositories:
     url: https://vmware-tanzu.github.io/helm-charts
   - name: kassio
     url: https://masantiago.github.io/kassio-repository
+  - name: truecharts
+    url: tccr.io/truecharts
+    oci: true
