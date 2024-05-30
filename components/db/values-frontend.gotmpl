@@ -17,9 +17,9 @@ primary:
     enabled: false
 image:
   repository: arm64v8/mariadb
-  tag: 10.5.12
+  tag: 11.3.2
 {{- else }}
 image:
   repository: bitnami/mariadb
-  tag: 10.5.12-debian-10-r68 # Version 10.6 have an issue when starting from scratch. Waiting for newer versions
+  tag: 11.3.2-debian-12-r5
 {{- end -}}
