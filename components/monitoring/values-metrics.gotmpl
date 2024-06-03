@@ -1,5 +1,7 @@
 ---
 grafana:
+  image: # Prevent from warning in dashboards. Must be updated in a new installation.
+    tag: 10.3.3
   ingress:
     enabled: true
     annotations:
@@ -15,10 +17,8 @@ prometheus:
     storageSpec:
       volumeClaimTemplate:
         spec:
-          accessModes: ["ReadWriteOnce"]          
+          accessModes: ["ReadWriteOnce"]
     nodeSelector:
       kassio/monitoring: "true"
-alertmanager:
-  enabled: false    
 nodeSelector:
   kassio/monitoring: "true"
