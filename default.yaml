@@ -46,6 +46,8 @@ components:
       enabled: false
     s3:
       enabled: false
+    block:
+      enabled: false
   nvr:
     enabled: false
     coral:

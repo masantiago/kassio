@@ -23,3 +23,5 @@ repositories:
   - name: truecharts
     url: tccr.io/truecharts
     oci: true
+  - name: longhorn
+    url: https://charts.longhorn.io
