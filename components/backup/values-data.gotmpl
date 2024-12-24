@@ -1,17 +1,22 @@
 ---
 image:
   repository: velero/velero
-  tag: v1.12.3
+  tag: v1.15.0
 initContainers:
   - name: velero-plugin-for-aws
-    image: velero/velero-plugin-for-aws:v1.8.2
+    image: velero/velero-plugin-for-aws:v1.10.0
     imagePullPolicy: IfNotPresent
     volumeMounts:
       - mountPath: /target
         name: plugins
+configuration:
+   # Enable CSI snapshot support
+  features: EnableCSI
+  defaultVolumesToFsBackup: false
+
+# Disable VolumeSnapshotLocation CRD. It is not needed for CSI integration
 snapshotsEnabled: false
 deployNodeAgent: true
-defaultVolumesToFsBackup: false
 schedules:
   daily:
     disabled: false

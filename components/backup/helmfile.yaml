@@ -12,6 +12,6 @@ releases:
   - name: kassio-backup-data
     <<: *release
     chart: vmware-tanzu/velero
-    version: 5.2.2
+    version: 8.1.0
     labels:
       element: data
