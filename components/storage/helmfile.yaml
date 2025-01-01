@@ -12,7 +12,7 @@ releases:
   - name: kassio-storage-block
     <<: *release
     chart: longhorn/longhorn
-    version: 1.6.2
+    version: 1.7.2
     labels:
       element: block
 

@@ -17,5 +17,6 @@ ingress:
     kubernetes.io/ingress.class: traefik
 longhornUI:
   replicas: 1
+global:
   nodeSelector:
     kassio/storage: "true"
