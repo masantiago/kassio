@@ -9,5 +9,3 @@ persistence:
   config:
     storageClass: local-path
     size: 5Gi
-nodeSelector:
-  

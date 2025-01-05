@@ -12,7 +12,7 @@ releases:
   - name: kassio-metrics
     <<: *release
     chart: prometheus/kube-prometheus-stack
-    version: 59.1.0
+    version: 67.7.0
     labels:
       element: metrics
     timeout: 600
