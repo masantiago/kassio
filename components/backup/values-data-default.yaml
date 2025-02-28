@@ -9,7 +9,7 @@ configuration:
         region: minio
         s3ForcePathStyle: "true"
         s3Url: http://kassio-storage-s3:9000
-        publicUrl: http://kassio-node:32001
+        publicUrl: http://buckets.kassio
 schedules:
   daily:
     schedule: "0 0 * * *" # Daily at 00:00

@@ -15,8 +15,15 @@ replicas: 1
 resources:
   requests:
     memory: 1Gi
-service:
-  type: NodePort
-  nodePort: 32001
+ingress:
+  enabled: true
+  path: /
+  annotations:
+    kubernetes.io/ingress.class: traefik
+consoleIngress:
+  enabled: true
+  path: /
+  annotations:
+    kubernetes.io/ingress.class: traefik
 nodeSelector:
   kassio/storage: "true"

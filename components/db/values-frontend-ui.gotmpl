@@ -1,18 +1,13 @@
 ---
 image:
-  repository: ghcr.io/linuxserver/mysql-workbench
-  tag: 8.0.36
-persistence:
-  config:
-    enabled: true
-    mountPath: "/config"
+  repository: bitnami/phpmyadmin
+  tag: 5.2.2-debian-12-r5
+db:
+  host: kassio-db-frontend
+  port: 3306
 ingress:
-  main:
-    enabled: true
-    integrations:
-      traefik:
-        enabled: false
-    annotations:
-      kubernetes.io/ingress.class: traefik
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: traefik
 nodeSelector:
   kassio/db: "true"

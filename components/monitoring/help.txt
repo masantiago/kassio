@@ -8,3 +8,8 @@ kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-oper
 kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.79.0/example/prometheus-operator-crd/monitoring.coreos.com_scrapeconfigs.yaml --request-timeout=300s
 kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.79.0/example/prometheus-operator-crd/monitoring.coreos.com_servicemonitors.yaml --request-timeout=300s
 kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.79.0/example/prometheus-operator-crd/monitoring.coreos.com_thanosrulers.yaml --request-timeout=300s
+
+
+- Include label
+ velero.io/exclude-from-backup: "true"
+for thos pvcs that should not be backed up

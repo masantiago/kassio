@@ -18,8 +18,8 @@ releases:
 
   - name: kassio-db-frontend-ui
     <<: *release
-    chart: truecharts/mysql-workbench
-    version: 10.0.11
+    chart: bitnami/phpmyadmin
+    version: 18.1.4
     labels:
       element: frontend-ui
 

@@ -15,5 +15,7 @@ persistence:
     type: pvc
     accessMode: ReadWriteOnce
     mountPath: /data
+securityContext: # Needed to fix error on writing with longhorn
+  runAsUser: 0
 nodeSelector:
   kassio/engine: "true"

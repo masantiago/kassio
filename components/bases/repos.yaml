@@ -25,3 +25,5 @@ repositories:
     oci: true
   - name: longhorn
     url: https://charts.longhorn.io
+  - name: zigbee2mqtt
+    url: https://charts.zigbee2mqtt.io
