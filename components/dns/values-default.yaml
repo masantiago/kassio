@@ -5,6 +5,10 @@ ingress:
       - host: dns.kassio
         paths:
           - path: /
+    tls:
+      - secretName: kassio-ssl-wildcard-tls
+        hosts:
+          - dns.kassio
 persistence:
   config:
     storageClass: local-path

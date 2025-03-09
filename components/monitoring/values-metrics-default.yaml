@@ -3,6 +3,10 @@ grafana:
   ingress:
     hosts:
       - monitoring.kassio
+    tls:
+      - secretName: kassio-ssl-wildcard-tls
+        hosts:
+          - monitoring.kassio
 prometheus:
   prometheusSpec:
     retention: 15d

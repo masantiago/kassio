@@ -4,8 +4,7 @@ grafana:
     tag: 11.4.0
   ingress:
     enabled: true
-    annotations:
-      kubernetes.io/ingress.class: traefik
+    ingressClassName: traefik
   nodeSelector:
     kassio/monitoring: "true"
   env:

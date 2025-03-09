@@ -56,6 +56,12 @@ components:
       enabled: false
   sai:
     enabled: false
+  ssl:
+    enabled: true
+    cert:
+      enabled: true
+    duckdns:
+      enabled: false
   vault:
     enabled: false
   voice:
@@ -66,6 +72,8 @@ components:
       enabled: false
     asr:
       enabled: false
+  workflow:
+    enabled: false
   zigbee:
     enabled: false
   zwave:

@@ -13,8 +13,7 @@ defaultSettings:
 ingress:
   enabled: true
   path: /
-  annotations:
-    kubernetes.io/ingress.class: traefik
+  ingressClassName: traefik
 longhornUI:
   replicas: 1
 global:

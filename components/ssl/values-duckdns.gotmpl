@@ -1,0 +1,12 @@
+---
+image:
+  repository: csp33/cert-manager-duckdns-webhook
+  tag: 1.0.1
+certManager:
+  namespace: kassio
+  serviceAccountName: kassio-ssl
+clusterIssuer:
+  create: true
+  name: kassio-ssl-issuer
+nodeSelector:
+  kassio/ssl: "true"

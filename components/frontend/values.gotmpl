@@ -7,8 +7,7 @@ dnsPolicy: ClusterFirstWithHostNet
 ingress:
   main:
     enabled: true
-    annotations:
-      kubernetes.io/ingress.class: traefik
+    ingressClassName: traefik
 persistence:
   config:
     enabled: true
