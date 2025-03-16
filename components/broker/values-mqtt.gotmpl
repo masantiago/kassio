@@ -5,12 +5,20 @@ image:
 service:
   main:
     enabled: true
-    type: NodePort
     ports:
       mqtt:
         enabled: true
         port: 1883
-        nodePort: 32002
+  ws:
+    enabled: true
+    type: NodePort
+    ports:
+      ws:
+        enabled: true
+        port: 9001
+        nodePort: 32001
+auth:
+  enabled: true
 persistence:
   data:
     enabled: true
@@ -25,25 +33,40 @@ persistence:
   auth:
     enabled: true
     type: custom
-    readOnly: true      
+    readOnly: true
     volumeSpec:
       configMap:
         name: kassio-broker-auth
-    subPath: 
+    subPath:
       - path: kassio.conf
         mountPath: /mosquitto/configinc/kassio.conf
       - path: kassio.pwd
         mountPath: /mosquitto/configinc/kassio.pwd
       - path: kassio.acl
         mountPath: /mosquitto/configinc/kassio.acl
+  certs:
+    enabled: true
+    type: custom
+    readOnly: true
+    volumeSpec:
+      secret:
+        secretName: kassio-ssl-perales-wildcard-tls
+    mountPath: /mosquitto/certs
 configmap:
   auth:
     enabled: true
     data:
-      kassio.conf: |-  
+      kassio.conf: |-
+        # Websockets
+        listener 9001
+        protocol websockets
+        certfile /mosquitto/certs/tls.crt
+        keyfile /mosquitto/certs/tls.key
+
+        # Authorization
         password_file /mosquitto/configinc/kassio.pwd
         acl_file /mosquitto/configinc/kassio.acl
-      kassio.acl: |-  
+      kassio.acl: |-
         # IMPORTANT: Be careful with blank spaces after user name. It makes the ACL invalid.
 
         # ACL for user 'admin'
