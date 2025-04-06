@@ -29,3 +29,5 @@ repositories:
     oci: true
   - name: jetstack
     url: https://charts.jetstack.io
+  - name: zigbee2mqtt
+    url: https://charts.zigbee2mqtt.io
