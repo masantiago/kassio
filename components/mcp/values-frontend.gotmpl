@@ -1,0 +1,56 @@
+# Using Dockerfile https://github.com/voska/hass-mcp/blob/master/Dockerfile
+image:
+  # -- image repository
+  repository: ghcr.io/astral-sh/uv
+  # -- image tag
+  tag: 0.6.6-python3.13-bookworm
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- Override the command(s) for the default container
+command:
+  - /bin/bash
+  - -c
+  - |
+    echo "🔧 Installing prerequisites..." && \
+    apt-get update && \
+    apt-get install -y curl gnupg git && \
+
+    echo "📦 Installing Node.js 23..." && \
+    curl -fsSL https://deb.nodesource.com/setup_23.x | bash - && \
+    apt-get install -y nodejs && \
+
+    echo "📥 Cloning project..." && \
+    git clone https://github.com/voska/hass-mcp.git /app && \
+    cd /app && \
+
+    echo "📚 Installing Python package using uv..." && \
+    uv pip install --system -e . && \
+
+    echo "🚀 Starting supergateway..." && \
+    PYTHONUNBUFFERED=1 PYTHONPATH=/app \
+    npx -y supergateway \
+      --stdio "python -m app" \
+      --port 8000 \
+      --ssePath /sse \
+      --messagePath /message
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    enabled: true
+    ports:
+      http:
+        enabled: true
+        port: 8000
+
+ingress:
+  main:
+    enabled: true
+    ingressClassName: traefik
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: wss
+
+nodeSelector:
+  kassio/mcp: "true"

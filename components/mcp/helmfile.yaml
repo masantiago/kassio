@@ -1,0 +1,17 @@
+bases:
+  - ../bases/repos.yaml
+  - ../bases/environments.yaml
+
+{{ readFile "../bases/templates.yaml" }}
+
+commonLabels:
+  component: mcp
+
+releases:
+
+  - name: kassio-mcp-frontend
+    <<: *release
+    chart: kassio/mcp
+    version: 1.0.0
+    labels:
+      element: frontend

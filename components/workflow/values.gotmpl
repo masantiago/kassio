@@ -4,7 +4,9 @@ image:
   tag: 1.81.2
 ingress:
   enabled: true
-  className: traefik 
+  className: traefik
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: kassio-remove-x-frame-options@kubernetescrd
 main:
   #config:
   persistence:

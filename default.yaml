@@ -31,6 +31,10 @@ components:
   frontend:
     platform: intel # intel|arm
     enabled: true
+  mcp:
+    enabled: false
+    frontend:
+      enabled: false
   monitoring:
     enabled: false
     metrics:

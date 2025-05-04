@@ -1,0 +1,11 @@
+---
+ingress:
+  main:
+    hosts:
+      - host: mcp-frontend.kassio
+        paths:
+          - path: /
+    tls:
+      - secretName: kassio-ssl-wildcard-tls
+        hosts:
+          - mcp-frontend.kassio

@@ -19,6 +19,13 @@ service:
         nodePort: 32001
 auth:
   enabled: true
+ingress:
+  main:
+    enabled: true
+    ingressClassName: traefik
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: wss
+      traefik.ingress.kubernetes.io/router.tls: "true"
 persistence:
   data:
     enabled: true
@@ -44,14 +51,6 @@ persistence:
         mountPath: /mosquitto/configinc/kassio.pwd
       - path: kassio.acl
         mountPath: /mosquitto/configinc/kassio.acl
-  certs:
-    enabled: true
-    type: custom
-    readOnly: true
-    volumeSpec:
-      secret:
-        secretName: kassio-ssl-perales-wildcard-tls
-    mountPath: /mosquitto/certs
 configmap:
   auth:
     enabled: true
@@ -60,8 +59,6 @@ configmap:
         # Websockets
         listener 9001
         protocol websockets
-        certfile /mosquitto/certs/tls.crt
-        keyfile /mosquitto/certs/tls.key
 
         # Authorization
         password_file /mosquitto/configinc/kassio.pwd
