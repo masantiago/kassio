@@ -1,0 +1,13 @@
+---
+ingress:
+  hosts:
+    - host: editor.kassio
+      paths:
+        - /
+  tls:
+    - secretName: kassio-ssl-wildcard-tls
+      hosts:
+        - editor.kassio
+persistence:
+  size: 10Gi
+  storageClass: local-path

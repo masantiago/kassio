@@ -20,17 +20,19 @@ env:
 ingress:
   main:
     enabled: true
+    ingressClassName: traefik
+    annotations:
+      traefik.ingress.kubernetes.io/router.middlewares: kassio-allow-iframes@kubernetescrd
 persistence:
   config:
     enabled: true
     type: pvc
-    accessMode: ReadWriteOnce    
+    accessMode: ReadWriteOnce
     mountPath: /photoprism/storage
-  
   originals:
     enabled: true
     type: pvc
-    accessMode: ReadWriteOnce    
+    accessMode: ReadWriteOnce
     mountPath: /photoprism/originals
 nodeSelector:
   kassio/ai-photos: "true"

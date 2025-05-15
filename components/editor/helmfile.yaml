@@ -1,0 +1,14 @@
+bases:  
+  - ../bases/repos.yaml
+  - ../bases/environments.yaml
+
+{{ readFile "../bases/templates.yaml" }}
+
+commonLabels:
+  component: editor
+
+releases:
+  - name: kassio-editor
+    <<: *release
+    chart: kassio/code-server
+    version: 3.27.0

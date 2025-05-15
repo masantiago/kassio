@@ -5,8 +5,7 @@ image:
 ingress:
   main:
     enabled: true
-    annotations:
-      kubernetes.io/ingress.class: traefik
+    ingressClassName: traefik
 service:
   main:
     ports:

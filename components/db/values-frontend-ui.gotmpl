@@ -8,5 +8,7 @@ db:
 ingress:
   enabled: true
   ingressClassName: traefik
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: kassio-remove-x-frame-options@kubernetescrd
 nodeSelector:
   kassio/db: "true"

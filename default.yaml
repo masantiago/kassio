@@ -26,6 +26,8 @@ components:
       enabled: false
   dns:
     enabled: false
+  editor:
+    enabled: false
   engine:
     enabled: false
   frontend:
