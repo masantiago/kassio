@@ -1,14 +1,13 @@
 ---
 image:
   repository: adguard/adguardhome
-  tag: v0.106.3
+  tag: v0.107.55
 hostNetwork: true
 dnsPolicy: ClusterFirstWithHostNet  
 ingress:
   main:
     enabled: true
-    annotations:
-      kubernetes.io/ingress.class: traefik
+    ingressClassName: traefik
 persistence:
   config:
     enabled: true

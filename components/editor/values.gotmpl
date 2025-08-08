@@ -1,0 +1,13 @@
+---
+image:
+  repository: codercom/code-server
+  tag: "4.100.0"
+  pullPolicy: IfNotPresent
+ingress:
+  enabled: true
+  ingressClassName: traefik
+persistence:
+  enabled: true
+  accessMode: ReadWriteOnce
+nodeSelector:
+  kassio/editor: "true"

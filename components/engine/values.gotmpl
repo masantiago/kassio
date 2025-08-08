@@ -1,19 +1,20 @@
 ---
 image:
   repository: nodered/node-red
-  tag: 3.0.2  
+  tag: 4.0.9
 hostNetwork: true
 dnsPolicy: ClusterFirstWithHostNet
 ingress:
   main:
     enabled: true
-    annotations:
-      kubernetes.io/ingress.class: traefik
+    ingressClassName: traefik
 persistence:
   data:
     enabled: true
     type: pvc
     accessMode: ReadWriteOnce
     mountPath: /data
+securityContext: # Needed to fix error on writing with longhorn
+  runAsUser: 0
 nodeSelector:
   kassio/engine: "true"

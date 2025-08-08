@@ -1,17 +1,27 @@
 ---
-persistence:
-  usb:
-    hostPath: /dev/ttyACM0
-  data:
-    storageClass: local-path
-    size: 2Gi
-config:
-  advanced:
-    network_key: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    channel: 11 # https://www.metageek.com/training/resources/zigbee-wifi-coexistence.html
 ingress:
-  main:
-    hosts:
-      - host: zigbee.your-kassio.com
-        paths:
-          - path: /
+  hosts:
+    - host: zigbee.kassio
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+        - path: /api
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: kassio-ssl-wildcard-tls
+      hosts:
+        - zigbee.kassio
+statefulset:
+  storage:
+    storageClassName: local-path
+    size: 1Gi
+  volumes:
+    - name: usb
+      hostPath:
+        path: /dev/ttyACM0
+zigbee2mqtt:
+  advanced:
+    pan_id: GENERATE
+    ext_pan_id: [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]
+    network_key: GENERATE
+    channel: 11 # https://www.metageek.com/training/resources/zigbee-wifi-coexistence.html

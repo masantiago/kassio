@@ -1,12 +1,11 @@
 ---
-image: 
+image:
   repository: zwavejs/zwave-js-ui
-  tag: 8.16.1
+  tag: 10.3.0
 ingress:
   main:
     enabled: true
-    annotations:
-      kubernetes.io/ingress.class: traefik
+    ingressClassName: traefik
 service:
   main:
     ports:
@@ -17,12 +16,12 @@ securityContext:
 persistence:
   config:
     enabled: true
-    type: pvc    
+    type: pvc
     accessMode: ReadWriteOnce
     mountPath: /usr/src/app/store
   usb:
     enabled: true
-    type: hostPath    
+    type: hostPath
     mountPath: /dev/ttyACM0
 nodeSelector:
   kassio/zwave: "true"

@@ -1,0 +1,21 @@
+---
+ingress:
+  main:
+    hosts:
+      - host: wss-broker.kassio
+        paths:
+          - path: /
+            service:
+              name: kassio-broker-ws
+              port: 9001
+    tls:
+      - secretName: kassio-ssl-wildcard-tls
+        hosts:
+          - wss-broker.kassio
+persistence:
+  configinc:
+    storageClass: local-path
+    size: 100Mi
+  data:
+    storageClass: local-path
+    size: 5Gi

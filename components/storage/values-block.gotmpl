@@ -1,0 +1,21 @@
+---
+persistence:
+  defaultClassReplicaCount: 1
+csi:
+  attacherReplicaCount: 1
+  provisionerReplicaCount: 1
+  resizerReplicaCount: 1
+  snapshotterReplicaCount: 1
+defaultSettings:
+  defaultDataPath: "/storage"
+  defaultReplicaCount: 1
+  deletingConfirmationFlag: true
+ingress:
+  enabled: true
+  path: /
+  ingressClassName: traefik
+longhornUI:
+  replicas: 1
+global:
+  nodeSelector:
+    kassio/storage: "true"

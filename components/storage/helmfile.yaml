@@ -9,6 +9,13 @@ commonLabels:
 
 releases:
 
+  - name: kassio-storage-block
+    <<: *release
+    chart: longhorn/longhorn
+    version: 1.7.2
+    labels:
+      element: block
+
   - name: kassio-storage-nas
     <<: *release
     chart: kubernetes-sigs-nfs-external/nfs-subdir-external-provisioner
@@ -26,8 +33,6 @@ releases:
   - name: kassio-storage-s3
     <<: *release
     chart: minio/minio
-    version: 3.6.2
+    version: 5.0.15
     labels:
       element: s3
-    needs:
-      - kassio/kassio-storage-nas

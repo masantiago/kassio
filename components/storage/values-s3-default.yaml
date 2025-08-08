@@ -1,4 +1,18 @@
 ---
+ingress:
+  hosts:
+    - buckets.kassio
+  tls:
+    - secretName: kassio-ssl-wildcard-tls
+      hosts:
+        - buckets.kassio
+consoleIngress:
+  hosts:
+    - s3.kassio
+  tls:
+    - secretName: kassio-ssl-wildcard-tls
+      hosts:
+        - s3.kassio
 persistence:
   storageClass: nas
   size: 100Gi

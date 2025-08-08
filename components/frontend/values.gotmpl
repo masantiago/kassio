@@ -1,14 +1,17 @@
 ---
 image:
   repository: ghcr.io/home-assistant/home-assistant
-  tag: 2023.8.2
+  tag: 2025.4.2
 hostNetwork: true
+service:
+  main:
+    enabled: true
+    type: ClusterIP
 dnsPolicy: ClusterFirstWithHostNet
 ingress:
   main:
     enabled: true
-    annotations:
-      kubernetes.io/ingress.class: traefik
+    ingressClassName: traefik
 persistence:
   config:
     enabled: true

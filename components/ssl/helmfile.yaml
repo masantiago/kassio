@@ -1,0 +1,23 @@
+bases:  
+  - ../bases/repos.yaml
+  - ../bases/environments.yaml
+
+{{ readFile "../bases/templates.yaml" }}
+
+commonLabels:
+  component: ssl
+
+releases:
+  - name: kassio-ssl
+    <<: *release
+    chart: jetstack/cert-manager
+    version: 1.17.1
+    labels:
+      element: cert
+
+  - name: kassio-ssl-duckdns
+    <<: *release
+    chart: kassio/cert-manager-duckdns-webhook
+    version: 1.1.4
+    labels:
+      element: duckdns

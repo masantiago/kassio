@@ -1,4 +1,4 @@
-bases:    
+bases:
   - ../bases/repos.yaml
   - ../bases/environments.yaml
 
@@ -8,7 +8,16 @@ commonLabels:
   component: broker
 
 releases:
-  - name: kassio-broker    
+  - name: kassio-broker
     <<: *release
     chart: k8s-at-home/mosquitto
     version: 4.2.0
+    labels:
+      element: mqtt
+
+  - name: kassio-broker-ui
+    <<: *release
+    chart: kassio/mqttx
+    version: 1.0.0
+    labels:
+      element: ui

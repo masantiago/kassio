@@ -20,3 +20,14 @@ repositories:
     url: https://vmware-tanzu.github.io/helm-charts
   - name: kassio
     url: https://masantiago.github.io/kassio-repository
+  - name: longhorn
+    url: https://charts.longhorn.io
+  - name: zigbee2mqtt
+    url: https://charts.zigbee2mqtt.io
+  - name: 8gears
+    url: 8gears.container-registry.com/library
+    oci: true
+  - name: jetstack
+    url: https://charts.jetstack.io
+  - name: zigbee2mqtt
+    url: https://charts.zigbee2mqtt.io

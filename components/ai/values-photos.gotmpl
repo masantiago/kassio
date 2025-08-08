@@ -1,7 +1,7 @@
 ---
 image:
   repository: photoprism/photoprism
-  tag: 220629-jammy
+  tag: "250426"
 env:
   # -- Photoprism storage path
   PHOTOPRISM_STORAGE_PATH: /photoprism/storage
@@ -14,25 +14,25 @@ env:
   # -- Database schema name
   PHOTOPRISM_DATABASE_NAME: photoprism
   # -- Database user name
-  PHOTOPRISM_DATABASE_USER: kassio  
+  PHOTOPRISM_DATABASE_USER: kassio
   # -- Disable authentication / password protection
   PHOTOPRISM_PUBLIC: "false"
 ingress:
   main:
     enabled: true
+    ingressClassName: traefik
+    annotations:
+      traefik.ingress.kubernetes.io/router.middlewares: kassio-allow-iframes@kubernetescrd
 persistence:
   config:
     enabled: true
     type: pvc
-    accessMode: ReadWriteOnce    
+    accessMode: ReadWriteOnce
     mountPath: /photoprism/storage
-  
   originals:
     enabled: true
     type: pvc
-    accessMode: ReadWriteOnce    
+    accessMode: ReadWriteOnce
     mountPath: /photoprism/originals
 nodeSelector:
   kassio/ai-photos: "true"
-podAnnotations:
-  backup.velero.io/backup-volumes-excludes: originals

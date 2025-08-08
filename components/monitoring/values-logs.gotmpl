@@ -1,6 +1,11 @@
 ---
 loki:
+  url: http://kassio-logs-loki:3100
   persistence:
-    enabled: true        
+    enabled: true
   nodeSelector:
     kassio/monitoring: "true"
+promtail:
+  config:
+    clients:
+      - url: http://kassio-logs-loki:3100/loki/api/v1/push

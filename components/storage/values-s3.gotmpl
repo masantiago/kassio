@@ -1,8 +1,10 @@
 ---
 image:
   repository: quay.io/minio/minio
-  tag: RELEASE.2022-04-01T03-41-39Z
+  tag: RELEASE.2024-01-11T07-46-16Z
 buckets:
+  - name: kassio-s3
+    policy: public
   - name: kassio-backup
     policy: public
 persistence:
@@ -13,10 +15,15 @@ replicas: 1
 resources:
   requests:
     memory: 1Gi
-service:
-  type: NodePort
-  nodePort: 32001
+ingress:
+  enabled: true
+  path: /
+  ingressClassName: traefik
+consoleIngress:
+  enabled: true
+  path: /
+  ingressClassName: traefik
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: kassio-remove-x-frame-options@kubernetescrd
 nodeSelector:
   kassio/storage: "true"
-podAnnotations:
-  backup.velero.io/backup-volumes-excludes: export

@@ -33,6 +33,6 @@ releases:
   - name: kassio-ai-photos
     <<: *release
     chart: k8s-at-home/photoprism
-    version: 7.0.0
+    version: 7.1.2
     labels:
       element: photos

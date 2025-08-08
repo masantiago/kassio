@@ -1,5 +1,8 @@
 environments:
   default:
-  
+  vallecas:
+  perales:
+  fuenla:
+
 helmfiles:
   - ./components/*/helmfile.yaml

@@ -1,0 +1,11 @@
+---
+ingress:
+  main:
+    hosts:
+      - host: broker.kassio
+        paths:
+          - path: /
+    tls:
+      - secretName: kassio-ssl-wildcard-tls
+        hosts:
+          - broker.kassio

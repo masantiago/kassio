@@ -7,7 +7,7 @@ args:
 ingress:
   main:
     hosts:
-      - host: voice.your-kassio.com
+      - host: voice.kassio
         paths:
           - path: /
 persistence:

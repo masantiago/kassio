@@ -4,10 +4,14 @@ persistence:
     storageClass: local-path
     size: 2Gi
   usb:
-    hostPath: /dev/ttyACM0  
+    hostPath: /dev/ttyACM0
 ingress:
   main:
     hosts:
-      - host: zwave.your-kassio.com
+      - host: zwave.kassio
         paths:
           - path: /
+    tls:
+      - secretName: kassio-ssl-wildcard-tls
+        hosts:
+          - zwave.kassio

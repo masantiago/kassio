@@ -10,7 +10,5 @@ commonLabels:
 releases:
   - name: kassio-zigbee
     <<: *release
-    chart: k8s-at-home/zigbee2mqtt
-    version: 9.0.1
-    needs:
-      - kassio/kassio-broker
+    chart: zigbee2mqtt/zigbee2mqtt
+    version: 2.2.1

@@ -1,0 +1,14 @@
+---
+image:
+  repository: bitnami/phpmyadmin
+  tag: 5.2.2-debian-12-r5
+db:
+  host: kassio-db-frontend
+  port: 3306
+ingress:
+  enabled: true
+  ingressClassName: traefik
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: kassio-remove-x-frame-options@kubernetescrd
+nodeSelector:
+  kassio/db: "true"

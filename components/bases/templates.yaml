@@ -2,28 +2,28 @@
 templates:
   release: &release
     namespace: kassio
-    installedTemplate: 
+    installedTemplate:
       '{{- $component := (index .Values.components .Release.Labels.component) -}}
-       {{- with $component -}}
-         {{- if $component.enabled -}}
-           {{- if index $.Release.Labels "element" -}}
-             {{- $element := (index $component $.Release.Labels.element) -}}
-             {{- with $element -}}
-               {{- $element.enabled -}}
-             {{- else -}}
-               {{- $component.enabled -}}
-             {{- end -}}
-           {{- else -}}
-             {{- $component.enabled -}}
-           {{- end -}}
-         {{- else -}}
-           {{- $component.enabled -}}
-         {{- end -}}   
-       {{- else -}}
-       false
-       {{- end -}}'
+      {{- with $component -}}
+      {{- if $component.enabled -}}
+      {{- if index $.Release.Labels "element" -}}
+      {{- $element := (index $component $.Release.Labels.element) -}}
+      {{- with $element -}}
+      {{- $element.enabled -}}
+      {{- else -}}
+      {{- $component.enabled -}}
+      {{- end -}}
+      {{- else -}}
+      {{- $component.enabled -}}
+      {{- end -}}
+      {{- else -}}
+      {{- $component.enabled -}}
+      {{- end -}}
+      {{- else -}}
+      false
+      {{- end -}}'
     missingFileHandler: Warn
-    values:    
+    values:
       - '{{- if index .Release.Labels "element" -}}
         values-{{ .Release.Labels.element }}.gotmpl
         {{- else -}}
@@ -40,4 +40,9 @@ templates:
         secrets-{{ .Release.Labels.element }}.yaml
         {{- else -}}
         secrets.yaml
+        {{- end -}}'
+      - '{{- if index .Release.Labels "element" -}}
+        {{ requiredEnv "KASSIO_PATH" }}/components/{{ .Release.Labels.component }}/secrets-{{ .Release.Labels.element }}-{{ .Environment.Name }}.yaml
+        {{- else -}}
+        {{ requiredEnv "KASSIO_PATH" }}/components/{{ .Release.Labels.component }}/secrets-{{ .Environment.Name }}.yaml
         {{- end -}}'

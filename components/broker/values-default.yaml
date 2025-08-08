@@ -1,8 +1,0 @@
----
-persistence:
-  configinc:
-    storageClass: local-path
-    size: 100Mi  
-  data:
-    storageClass: local-path
-    size: 5Gi

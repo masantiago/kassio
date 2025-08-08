@@ -1,0 +1,17 @@
+---
+configuration:
+  backupStorageLocation:
+    - name: kassio-backup-storage
+      default: true
+      provider: aws
+      bucket: kassio-backup
+      config:
+        region: minio
+        s3ForcePathStyle: "true"
+        s3Url: http://kassio-storage-s3:9000
+        publicUrl: http://buckets.kassio
+schedules:
+  daily:
+    schedule: "0 0 * * *" # Daily at 00:00
+    template:
+      ttl: "336h"

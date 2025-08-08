@@ -1,4 +1,4 @@
-bases:  
+bases:
   - ../bases/repos.yaml
   - ../bases/environments.yaml
 
@@ -9,9 +9,9 @@ commonLabels:
 
 releases:
 
-  - name: kassio-backup
+  - name: kassio-backup-data
     <<: *release
     chart: vmware-tanzu/velero
-    version: 2.29.1    
-    needs:
-      - kassio/kassio-storage-s3
+    version: 8.1.0
+    labels:
+      element: data

@@ -15,8 +15,6 @@ releases:
     version: 8.2.2
     labels:
       element: coral
-    needs:
-      - kassio/kassio-broker
 
   - name: kassio-nvr-qsv
     <<: *release
@@ -24,6 +22,3 @@ releases:
     version: 8.2.2
     labels:
       element: qsv
-    needs:
-      - kassio/kassio-broker
-  
