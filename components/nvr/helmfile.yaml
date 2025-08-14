@@ -11,14 +11,14 @@ releases:
 
   - name: kassio-nvr
     <<: *release
-    chart: k8s-at-home/frigate
-    version: 8.2.2
+    chart: blakeshome/frigate
+    version: 7.8.0
     labels:
       element: coral
 
   - name: kassio-nvr-qsv
     <<: *release
-    chart: k8s-at-home/frigate
-    version: 8.2.2
+    chart: blakeshome/frigate
+    version: 7.8.0
     labels:
       element: qsv

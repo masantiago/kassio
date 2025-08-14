@@ -31,3 +31,5 @@ repositories:
     url: https://charts.jetstack.io
   - name: zigbee2mqtt
     url: https://charts.zigbee2mqtt.io
+  - name: blakeshome
+    url: https://blakeblackshear.github.io/blakeshome-charts/
