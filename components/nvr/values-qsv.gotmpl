@@ -7,6 +7,10 @@ service:
   port: 5000
   rtspPort: 8554
 
+ingress:
+  enabled: true
+  ingressClassName: traefik
+
 securityContext:
   privileged: true
 
