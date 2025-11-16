@@ -10,5 +10,5 @@ commonLabels:
 releases:
   - name: kassio-workflow
     <<: *release
-    chart: 8gears/n8n
-    version: 1.0.0
+    chart: community-charts/n8n
+    version: 1.15.17

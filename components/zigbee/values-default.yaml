@@ -15,11 +15,17 @@ statefulset:
   storage:
     storageClassName: local-path
     size: 1Gi
+  volumeMounts:
+    - name: usb
+      mountPath: /dev/ttyACM0
   volumes:
     - name: usb
       hostPath:
         path: /dev/ttyACM0
 zigbee2mqtt:
+  serial:
+    port: /dev/ttyACM0
+    adapter: zstack
   advanced:
     pan_id: GENERATE
     ext_pan_id: [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]
