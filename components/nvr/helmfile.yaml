@@ -16,6 +16,13 @@ releases:
     labels:
       element: coral
 
+  - name: kassio-nvr2
+    <<: *release
+    chart: blakeshome/frigate
+    version: 7.8.0
+    labels:
+      element: coral2
+
   - name: kassio-nvr-qsv
     <<: *release
     chart: blakeshome/frigate

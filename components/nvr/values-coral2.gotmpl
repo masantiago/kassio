@@ -1,0 +1,30 @@
+---
+image:
+  repository: ghcr.io/blakeblackshear/frigate
+  tag: 0.15.2
+
+service:
+  port: 5000
+  rtspPort: 8554
+
+ingress:
+  enabled: true
+  ingressClassName: traefik
+
+securityContext:
+  privileged: true
+
+nodeSelector:
+  kassio/nvr-coral2: "true"
+
+persistence:
+  config:
+    enabled: true
+    accessMode: ReadWriteOnce
+  media:
+    enabled: true
+    accessMode: ReadWriteOnce    
+
+coral:
+  enabled: true
+  hostPath: /dev/bus/usb
