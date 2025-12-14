@@ -5,12 +5,12 @@ bases:
 {{ readFile "../bases/templates.yaml" }}
 
 commonLabels:
-  component: mcp
+  component: llm
 
 releases:
-  - name: kassio-mcp-frontend
+  - name: kassio-llm-proxy
     <<: *release
-    chart: kassio/mcp
-    version: 1.0.0
+    chart: litellm/litellm-helm
+    version: 0.1.826
     labels:
-      element: frontend
+      element: proxy

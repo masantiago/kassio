@@ -35,3 +35,6 @@ repositories:
     url: https://charts.zigbee2mqtt.io
   - name: blakeshome
     url: https://blakeblackshear.github.io/blakeshome-charts/
+  - name: litellm
+    url: ghcr.io/berriai
+    oci: true

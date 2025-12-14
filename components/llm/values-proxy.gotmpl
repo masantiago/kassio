@@ -1,0 +1,38 @@
+image:
+  repository: ghcr.io/berriai/litellm-database
+  tag: main-v1.79.0-stable
+
+ingress:
+  enabled: true
+  className: traefik
+
+migrationJob:
+  enabled: true
+  hooks:
+    argocd:
+      enabled: false
+    helm:
+      enabled: true
+
+postgresql:
+  primary:
+    persistence:
+      storageClass: local-path
+      size: 10Gi
+
+nodeSelector:
+  kassio/llm: "true"
+
+envVars:
+  STORE_MODEL_IN_DB: "True"
+
+proxy_config:
+  model_list:
+    # At least one model must exist for the proxy to start.
+    - model_name: fake-openai-endpoint
+      litellm_params:
+        model: openai/fake
+        api_key: fake-key
+        api_base: https://exampleopenaiendpoint-production.up.railway.app/
+  general_settings:
+    master_key: os.environ/PROXY_MASTER_KEY
