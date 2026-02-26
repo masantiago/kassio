@@ -13,3 +13,8 @@ postgresql:
     persistence:
       storageClass: local-path
       size: 10Gi
+redis:
+  master:
+    persistence:
+      storageClass: local-path
+      size: 1Gi
