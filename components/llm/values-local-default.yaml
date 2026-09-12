@@ -1,0 +1,17 @@
+---
+persistence:
+  models:
+    storageClass: local-path
+    size: 10Gi
+  output:
+    storageClass: local-path
+    size: 5Gi
+ingress:
+  hosts:
+    - host: llm-local.kassio
+      paths:
+        - path: /
+  tls:
+    - secretName: kassio-ssl-wildcard-tls
+      hosts:
+        - llm-local.kassio

@@ -38,3 +38,5 @@ repositories:
   - name: litellm
     url: ghcr.io/berriai
     oci: true
+  - name: go-skynet
+    url: https://go-skynet.github.io/helm-charts/
