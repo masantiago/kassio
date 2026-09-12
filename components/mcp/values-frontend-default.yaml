@@ -8,4 +8,4 @@ ingress:
     tls:
       - secretName: kassio-ssl-wildcard-tls
         hosts:
-          - mcp-frontend.kassio
+          - mcp-frontend.kassio             

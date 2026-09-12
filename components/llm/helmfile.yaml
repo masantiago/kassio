@@ -1,0 +1,23 @@
+bases:
+  - ../bases/repos.yaml
+  - ../bases/environments.yaml
+
+{{ readFile "../bases/templates.yaml" }}
+
+commonLabels:
+  component: llm
+
+releases:
+  - name: kassio-llm-proxy
+    <<: *release
+    chart: litellm/litellm-helm
+    version: 0.1.826
+    labels:
+      element: proxy
+
+  - name: kassio-llm-local
+    <<: *release
+    chart: go-skynet/local-ai
+    version: 3.4.2
+    labels:
+      element: local

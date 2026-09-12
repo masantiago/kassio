@@ -1,7 +1,7 @@
 ---
 image:
   repository: ghcr.io/home-assistant/home-assistant
-  tag: 2025.4.2
+  tag: 2026.1.0
 hostNetwork: true
 service:
   main:
@@ -20,3 +20,17 @@ persistence:
     mountPath: /config
 nodeSelector:
   kassio/frontend: "true"
+additionalContainers:
+  ha-mcp:
+    image: ghcr.io/homeassistant-ai/ha-mcp:latest    
+    command:
+      - fastmcp
+      - run
+      - fastmcp-http.json
+    ports:
+      - containerPort: 8086
+        name: http
+        protocol: TCP
+    env:
+      HOMEASSISTANT_URL: "http://localhost:8123"
+      HOMEASSISTANT_TOKEN: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI3NTgzNDUzNWQyNTI0MDE3YmM2MzVhMWFlYTVhOTE0YSIsImlhdCI6MTc2MTUwODU3OCwiZXhwIjoyMDc2ODY4NTc4fQ.MeBM8YQJTbnRmFd8gwOrnWUVds9vxX52pMC5iySnpJI"

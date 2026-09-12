@@ -9,6 +9,9 @@ initContainers:
     volumeMounts:
       - mountPath: /target
         name: plugins
+kubectl:
+  image:
+    repository: docker.io/bitnamilegacy/kubectl
 configuration:
    # Enable CSI snapshot support
   features: EnableCSI

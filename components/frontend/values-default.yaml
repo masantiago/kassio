@@ -5,6 +5,7 @@ ingress:
       - host: frontend.kassio
         paths:
           - path: /
+            pathType: ImplementationSpecific
     tls:
       - secretName: kassio-ssl-wildcard-tls
         hosts:

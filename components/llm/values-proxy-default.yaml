@@ -1,0 +1,20 @@
+---
+ingress:
+  hosts:
+    - host: llm.kassio
+      paths:
+        - path: /
+  tls:
+    - secretName: kassio-ssl-wildcard-tls
+      hosts:
+        - llm.kassio
+postgresql:
+  primary:
+    persistence:
+      storageClass: local-path
+      size: 10Gi
+redis:
+  master:
+    persistence:
+      storageClass: local-path
+      size: 1Gi

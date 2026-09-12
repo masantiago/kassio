@@ -1,14 +1,18 @@
 ---
 ingress:
+  enabled: true
   hosts:
     - host: workflow.kassio
       paths:
-        - /
+        - path: /
+          pathType: Prefix
   tls:
     - hosts:
-        - workflow.kassio.duckdns.org
+        - workflow.kassio
       secretName: kassio-ssl-wildcard-tls
+
 main:
   persistence:
+    enabled: true
     storageClass: local-path
     size: 1Gi

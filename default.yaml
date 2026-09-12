@@ -33,6 +33,10 @@ components:
   frontend:
     platform: intel # intel|arm
     enabled: true
+  llm:
+    enabled: false
+    proxy:
+      enabled: false    
   mcp:
     enabled: false
     frontend:

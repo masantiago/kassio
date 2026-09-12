@@ -7,19 +7,13 @@ ingress:
   ingressClassName: traefik
 statefulset:
   storage:
-    enabled: true
-  volumeMounts:
-    - name: usb
-      mountPath: /dev/ttyACM0
+    enabled: true  
   nodeSelector:
     kassio/zigbee: "true"
 service:
   type: ClusterIP
 zigbee2mqtt:
-  timezone: Europe/Madrid
-  serial:
-    port: /dev/ttyACM0
-    adapter: zstack
+  timezone: Europe/Madrid  
   homeassistant:
     discovery_topic: "home-assistant/zigbee"
     status_topic: "home-assistant/status"

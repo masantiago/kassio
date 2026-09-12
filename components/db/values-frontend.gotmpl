@@ -1,4 +1,7 @@
 ---
+global:
+  security:
+    allowInsecureImages: true
 architecture: standalone
 auth:
   database: kassio-db
@@ -18,6 +21,6 @@ image:
   tag: 10.5.12
 {{- else }}
 image:
-  repository: bitnami/mariadb
-  tag: 10.5.12-debian-10-r0
+  repository: bitnamilegacy/mariadb
+  tag: 12.0.2
 {{- end -}}

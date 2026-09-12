@@ -8,7 +8,6 @@ commonLabels:
   component: mcp
 
 releases:
-
   - name: kassio-mcp-frontend
     <<: *release
     chart: kassio/mcp

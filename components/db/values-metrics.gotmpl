@@ -1,4 +1,7 @@
 ---
+global:
+  security:
+    allowInsecureImages: true
 auth:
   admin: 
     org: kassio
@@ -22,6 +25,6 @@ image:
   tag: 1.8
 {{- else }}
 image:
-  repository: bitnami/influxdb
+  repository: bitnamilegacy/influxdb
   tag: 2.2.0-debian-11-r3
 {{- end -}}
